@@ -54,7 +54,32 @@ https://aws.amazon.com/jp/free/
 コンソールではいろんな設定が可能
 
 **関数の概要**
-トリガー追加
+* トリガー追加
 指定したイベントが発生した場合、Lambda関数を実行する
 例：「S3にファイルがアップロードされた」というイベントが発生した場合
 ファイル名を変えて保存するコードを実行する。
+
+* Layers
+複数のLambda関数で、共通して使いたいコードを作成できる。
+テンプレートか？
+
+* 送信先のコード
+Lambdaの実行結果に従って、次のアクション（他のサービスを実行するなど）を
+指定することができる。
+例：Lambda実行後、AWSのSNSサービス（メッセージ通知サービス）を
+実行する。
+[![](https://wals.s3-ap-northeast-1.amazonaws.com/uploads/CloudContents/chap07/img/1.png)](https://wals.s3-ap-northeast-1.amazonaws.com/uploads/CloudContents/chap07/img/1.png)
+==設定 > アクセス権限==
+アクセス権限では、Lambdaと他サービスとのアクセス許可を設定する
+Cloud Watch Logsは、デフォルトで設定されている。
+
+[![](https://wals.s3-ap-northeast-1.amazonaws.com/uploads/CloudContents/chap07/img/2.png)](https://wals.s3-ap-northeast-1.amazonaws.com/uploads/CloudContents/chap07/img/2.png)
+
+==モニタリング==
+モニタリングでは、Lambdaに関するメトリクスをモニタリングする。
+[![](https://wals.s3-ap-northeast-1.amazonaws.com/uploads/CloudContents/chap07/img/3.png)](https://wals.s3-ap-northeast-1.amazonaws.com/uploads/CloudContents/chap07/img/3.png)
+==関数コード==
+関数コードでは、ブラウザ上でLambda関数を記述できる。
+[![](https://wals.s3-ap-northeast-1.amazonaws.com/uploads/CloudContents/chap07/img/4.png)](https://wals.s3-ap-northeast-1.amazonaws.com/uploads/CloudContents/chap07/img/4.png)
+
+
