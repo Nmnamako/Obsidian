@@ -82,4 +82,32 @@ Cloud Watch Logsは、デフォルトで設定されている。
 関数コードでは、ブラウザ上でLambda関数を記述できる。
 [![](https://wals.s3-ap-northeast-1.amazonaws.com/uploads/CloudContents/chap07/img/4.png)](https://wals.s3-ap-northeast-1.amazonaws.com/uploads/CloudContents/chap07/img/4.png)
 
+### AWS Lambda使用方法
+
+処理の流れ
+![](https://wals.s3-ap-northeast-1.amazonaws.com/curriculum/cloud/lambda_s3_process.png)
+
+1. 画像をS3へアップロードする
+2. S3に画像をアップロードすると、Lambda関数が実行される
+3. アップロードされた画像をリサイズし、別のS3へ保存する
+
+**以下カリキュラムの内容**
+-   画像アップロード用のS3バケット（img-files-original）
+-   リサイズ画像の保存用のS3バケット（img-files-resize）
+Amazon S3バケットの名前は「グローバルで一意」でなければならない
+
+作成例[![](https://wals.s3-ap-northeast-1.amazonaws.com/uploads/CloudContents/chap07/img/44.png)](https://wals.s3-ap-northeast-1.amazonaws.com/uploads/CloudContents/chap07/img/44.png)
+
+「画像アップロード用のS3バケット」 にテスト用の画像をアップロードして、Lambda関数との連携を確認できるようにしておく。
+
+[![](https://wals.s3-ap-northeast-1.amazonaws.com/uploads/CloudContents/chap07/img/45.png)](https://wals.s3-ap-northeast-1.amazonaws.com/uploads/CloudContents/chap07/img/45.png)
+以上が事前準備
+
+**Lambdaレイヤーを作成する**
+コードやライブラリをあらかじめ用意（共通化）して、
+Lambda関数に組み込めるサービス
+
+![](https://wals.s3-ap-northeast-1.amazonaws.com/curriculum/cloud/lambda_layer.png)
+
+
 
