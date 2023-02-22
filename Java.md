@@ -66,4 +66,26 @@ name = "Sato";
 これを変数の初期化という
 int number = 3;
 
+### 変数名の注意点
+変数名のルールは以下の通り
+
+date
+userName
+上記はOK
+
+下記はNG
+1name
+first_name
+namae
+名前
+
+
+### 計算結果について
+Javaではintとdoubleで計算を行うと
+計算結果をdoubleで返す
+
+int mouth = 12;
+int day = 2;
+System.out.println(mouth + "月" + day + "日")
+上記の出力は**int型の変数を自動的に文字列に変えてくれる**
 
