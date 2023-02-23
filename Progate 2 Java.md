@@ -39,3 +39,12 @@ x = 20;
 ! ( x >= 30 )
 xの値が30以上ではない場合は==true==
 xの値が30以上であった場合は==false==
+
+
+### Java内でのif文
+if () {
+	System.out.println("xxxx");
+} else if (条件) {
+	System.out.println("xxxx");
+}
+上記でif文、else if の書き方
