@@ -120,3 +120,54 @@ for (int i = 1; i <= 10; i++) {
 
 ### 配列について
 
+配列の宣言は以下の通りデータ型の後ろに[]カッコが必要
+配列宣言後でも中身を書き換えることが可能
+
+String[] names = {"John" , "Kate" , "Bob"};
+int[] number = {1,2,3,4,5};
+System.out.println(names[ 0 ] );
+names[0] = William;
+System.out.println(names[ 0 ] );
+
+なお、書き換えは配列内に存在する要素だけ書き換えることができる
+names[5]など存在しない要素はエラーになる
+
+**length**
+lengthは配列に付けると中身の数を出力する
+下記コードで配列の中身を一つずつ取り出している
+
+String[] names = {"John","kate","Bob"};
+for (int i = 0; i < names.length ; i++) {
+	System.out.println(names[ i ]);
+}
+
+**拡張for文**
+上記コードを簡略化させたのが以下
+String[] names = {"John","kate","Bob"};
+for (String name : names) {
+	System.out.println(name);
+}
+
+nameに再代入？させると変数 i を作らず中身を一つずつ出力していく
+
+**Progateにてテスト**
+class Main {
+  public static void main(String[] args) {
+    // 変数numbersに、与えられた数字の配列を代入してください
+    int[] numbers = {1, 4, 6, 9, 13, 16};
+    
+    int oddSum = 0;
+    int evenSum = 0;
+    
+    // for文を用いて、配列numbersの偶数の和と奇数の和を求めてください
+    for (int number:numbers) {
+      if (number % 2 == 0) {
+        evenSum = evenSum + number;
+      } else {
+        oddSum = oddSum + number;
+      }
+    }
+    System.out.println("奇数の和は" + oddSum + "です");
+    System.out.println("偶数の和は" + evenSum + "です");
+  }
+}
