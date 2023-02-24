@@ -41,10 +41,82 @@ xの値が30以上ではない場合は==true==
 xの値が30以上であった場合は==false==
 
 
-### Java内でのif文
+### Java内でのif文と各構文
 if () {
 	System.out.println("xxxx");
 } else if (条件) {
 	System.out.println("xxxx");
 }
 上記でif文、else if の書き方
+
+**switch文**
+switch (条件) {
+	case 値 1 :
+		処理 1 ;
+		break ;
+	case 値 2 :
+		処理 2 ;
+		break ;
+	case 値 3 :
+		処理 3 ;
+		break ;
+}
+caseの値が一致すれば処理を実行する
+caseの横の==:(セミコロン)==に注意
+
+**default**が存在するがRubyのelseと同じ
+以下例文
+switch (n) {
+	case 1 :
+		System.out.println("大吉");
+		break;
+	case 2 :
+		System.out.println("吉");
+		break;
+	default :
+		System.out.println("凶");
+		break;
+}
+
+**while分**
+以下while文の参考
+
+int i = 1;
+while (i <= 10) {
+	System.out.println(i + "回目のループ");
+	i++;
+}
+
+**for文**
+以下for文の参考
+
+for (int i = 1; i <= 10; i++) {
+	System.out.println(i + "回目のループ");
+}
+
+for 内のi++の後に ; は不要に注意
+
+**breakについて**
+繰り返し処理を終了させるには、falseを渡すか
+breakで強制終了を行う ifと組み合わせて扱うこともある
+for (int i = 1; i <= 10; i++) {
+	if (i > 5) {
+		break;
+	}
+}
+上記は if で i が6以上になったら強制終了
+
+**continue**
+対処の箇所の処理をスキップさせる
+
+for (int i = 1; i <= 10; i++) {
+	if(i % 3 == 0) {
+		continue;
+	}
+	System.out.println( i );
+}
+上記は i が3の倍数の時処理をスキップする
+
+
+### 配列について
+
