@@ -57,3 +57,82 @@ class Main {
   }
 }
 ****
+****
+### returnについて
+class Main {
+  public static void main(String[] args) {
+
+   String name = fullName("Kate","Jones");
+    
+    printData(name, 27);
+    
+    printData("John Christopher Smith", 65);
+    
+  }
+
+  public static void printData(String name, int age) {
+    System.out.println("私の名前は" + name + "です");
+    System.out.println("年齢は" + age + "歳です");
+  }
+
+  public static String fullName(String firstName, String lastName) {
+    return firstName + " " + lastName;
+  } 
+}
+
+
+**この記述で、fullName()メソッドに入れ物と仕切りを提供する
+fullName(最初の名前 | 後ろの名前)**
+
+public static String fullName(String firstName, String lastName) {
+    return firstName + " " + lastName;
+  } 
+
+**fullNameは上記で仕切りを作っているので、"Kate"、"Jones"を
+第一引数と第二引数で格納ができる**
+
+String name = fullName("Kate","Jones");
+
+**オーバーロード**
+基本的にメソッドは同名で作ることはできないが
+public static void hello() {
+
+}
+
+public static void hello( String name ) {
+
+}
+上記の様に仮引数が違えば同名でも作成可能
+
+****
+class Main {
+  public static void main(String[] args) {
+    printData(fullName("Kate", "Jones"), 27);
+    
+    printData(fullName("John", "Christopher", "Smith"), 65);
+  }
+
+  public static void printData(String name, int age) {
+    System.out.println("私の名前は" + name + "です");
+    System.out.println("年齢は" + age + "歳です");
+  }
+  public static String fullName(String firstName, String lastName) {
+    return firstName + " " + lastName;
+  }
+  public static String fullName(String firstName, String middleName, String lastName) {
+    return firstName + " " + middleName + " " + lastName;
+  }
+}
+****
+上記の様にオーバーロードができている
+
+printData(fullName("Kate", "Jones"), 27 );
+printData(fullName("John", "Christopher", "Smith" 65);
+
+恐らく、引数が入る数でどちらのfullNameを使うか
+決めている
+
+public static void printData(String name, int age) {
+}
+String name で文字列を自動的に代入している？
+int ageも同様な気がする
