@@ -180,3 +180,13 @@ height,weightの値が入り平均の計算を行い
 bmiの数値を出力に与えている
 
 ****
+以下のコードでtrue,falseでbmiの値が18.5〜25.0の間であれば
+trueを返すコード
+
+メソッドのデータ型宣言でbooleanを宣言
+
+public static boolean isHealthy(double bmi) {
+    return bmi >= 18.5 && bmi < 25.0;
+  }
+****
+
