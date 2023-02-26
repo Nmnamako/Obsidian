@@ -190,3 +190,55 @@ public static boolean isHealthy(double bmi) {
   }
 ****
 
+### 他のクラスからメソッドを呼び出す
+****
+下記のコードはclass Main の中で Person のhello()メソッドを
+呼び出している。Personとhello()の中央のドットに注意
+class Main {
+  public static void main(String[] args) {
+    Person.hello();
+  }
+}
+上記コードは Progate にて行われた
+
+下記のコードの様に
+Person.printData
+Person.fullName
+**Person内にあるメソッドは全て頭に記述しているクラス名が必要**
+
+Person.printData(Person.fullName("Kate", "Jones"), 27, 1.6, 50.0);
+
+
+==Personのクラスは別ファイルにて作成されている？==
+****
+
+### 外部ライブラリ
+****
+Javaは自身以外にも他人が作ったクラスを利用することも可能
+他人のクラスを利用する場合、「外部ライブラリ」という
+
+外部ライブラリを自身のプログラムに読み込む場合はimportを利用する
+**import java.lang.Math ;**
+今回は、==外部からMathクラスを読み込んでいる==
+「java.lang」の部分は、Mathクラスの場所を示しているらしい
+Progateでは「示している程度で覚えろ」と記述されている
+
+Progateでは、Personファイルで外部ライブラリを読み込み
+以下の箇所を改良
+System.out.println("BMIは" + ==Math.round(bmi)== + "です");
+
+あくまでも外部ライブラリは==読み込んでいるだけ==で、
+外部のメソッドを利用する場合は、頭に外部ライブラリの==クラス名==を
+付けて記述する必要がある
+****
+**ユーザーの入力待ち**
+import java.util.Scanner; は、入力を行わせる外部ライブラリ
+
+Scanner scanner = new Scanner(System.in);
+System.out.print("名前： ");
+String name = scanner.next();
+System.out.println("こんにちは" + name + "さん");
+
+最初の行はScannerを初期化しscannerという変数を入れている
+3行目のコードは、scanner.next()ではなく==コンソールに入力された文字列を受け取ることができる==
+****
