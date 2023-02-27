@@ -241,4 +241,13 @@ System.out.println("こんにちは" + name + "さん");
 
 最初の行はScannerを初期化しscannerという変数を入れている
 3行目のコードは、scanner.next()ではなく==コンソールに入力された文字列を受け取ることができる==
+
+scanner.next();
+上記で入力を受け付ける。文字列？
+
+scanner.nextInt();
+上記で入力を受け付ける。整数
+
+scanner.nextDouble();
+上記で入力を受け付ける。小数点
 ****
