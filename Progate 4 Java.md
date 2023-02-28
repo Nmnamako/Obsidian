@@ -23,14 +23,14 @@ Progateでは、クラスとインスタンスを人間の振る舞い方で表�
 
 
 ### クラスの定義方法
-```
+```java
 class クラス名 {
 
 }
 ```
 上記の様に記述すると==空のクラスが作成できる==
 
-```
+```java
 class Main {
 	public static void main(String[] args) {
 		new Person();
@@ -41,12 +41,12 @@ class Main {
 }
 ```
 クラスからインスタンスを作成するには「new クラス名()」とする
-```
+```java
 new Person();
 ```
 上記で、Personクラスのインスタンスを作成
 
-```
+```java
 Person person = new Person();
 ```
 上記の様に、personの変数に代入することができる。
@@ -108,3 +108,18 @@ person1に対してhello();メソッドを呼び出している状況
 ![[スクリーンショット 2023-02-28 17.11.54.png]]
 
 ![[スクリーンショット 2023-02-28 17.12.10.png]]
+
+### this
+メソッド内でインスタンスフィールドにアクセスするには「this」を
+使用する必要がある。
+
+「this」はクラス内メソッドの定義の中でのみ使用可能
+```java
+class Person {
+ public String name;
+ public void hello() {
+  System.out.println("こんにちは、私は" + this.name + "です");
+ }
+}
+```
+上記の様に「this」を使うと、そのメソッドが呼び出しているインスタンスに置き換えられる。
