@@ -217,3 +217,37 @@ public void printData() {}
 ```
 ここのデータ型は戻り値がないので「void」にしている
 [[Progate 3 Java]]にてメソッドの作り方が載っている
+
+
+Main.javaにはいかが記述されている
+```java
+class Main {
+  public static void main(String[] args) {
+    Person person1 = new Person("Kate", "Jones", 27, 1.6, 50.0);
+    
+    person1.printData();
+  }
+}
+```
+
+### クラスフィールドについて
+クラスに属するクラスフィールドが存在する
+クラスフィールドは「static」をつける
+```java
+class Person {
+ public static データ型 変数名 ;
+}
+```
+
+**クラスフィールドの具体例**
+Progateではインスタンスを作成した数を数えるために「count」という
+フィールドで、インスタンスの生成数を保存するコードを作った。
+また、countは個々のインスタンスにあるのではなく
+大元のクラスの中に含めればいい。
+
+Progateでは以下のようにクラスフィールドを作成
+```java
+class Person {
+ public static int count = 0;
+}
+```
