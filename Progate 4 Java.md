@@ -141,3 +141,79 @@ calss クラス名 {
 }
 ```
 上記でコンストラクタを定義する
+
+person.java内での記述
+```java
+Person(String name) {
+ System.out.println("インスタンスが生成されました");
+ this.name = name;
+}
+```
+Person(==String name==)を入れることで
+main.java内で書いている
+```java
+Person person1 = new Person("Kate Jones");
+```
+("Kate Jones")をコンストラクタに移動させることが可能になる
+
+以下はJava3にて作ったメソッド
+firstName変数はmainにて作成
+```java
+class Person {
+ public static String fullName(String firstName...) {
+  return firstName + ...;
+ }
+}
+```
+
+以下はJava4にて作ったメソッド
+```java
+class Person {
+ public String firstName;
+ public String fullName() {
+  return this.firstName + ...;
+ }
+}
+```
+
+
+Progateの課題では以下のように記述
+```java
+class Person {
+  public String firstName;
+  public String lastName;
+  public int age;
+  public double height;
+  public double weight;
+
+  Person(String firstName, String lastName, int age, double height, double weight) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+    this.height = height;
+    this.weight = weight;
+  }
+
+  public String fullName() {
+    return this.firstName + " " + this.lastName;
+  }
+
+  public double bmi() {
+    return this.weight / this.height / this.height;
+  }
+  
+  // printDataメソッドを定義してください
+  public void printData() {
+    System.out.println("私の名前は" + fullName() + "です");
+    System.out.println("年齢は" + this.age + "歳です");
+    System.out.println("BMIは" + Math.round(bmi()) + "です");
+  }
+}
+```
+thisを抜いたfirstNameだと出力結果は「null」で帰ってきた
+
+```java
+public void printData() {}
+```
+ここのデータ型は戻り値がないので「void」にしている
+[[Progate 3 Java]]にてメソッドの作り方が載っている
