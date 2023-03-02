@@ -330,3 +330,69 @@ this();でPersonコンストラクタを呼び出し各変数を呼び出すこ�
 
 ちなみに、fullName();メソッドではif構文にてmiddleNameの中身がnullで
 結果を分岐して対応
+
+### カプセル化について
+カプセル化とは、オブジェクト指向の重要な機能の一つで、
+使い手に必要ないものを隠すことを指している。
+
+カプセル化のイメージ
+パソコンなど中の回路はフレームで隠されていおり
+ユーザーはキーボードのみ操作することができている。
+回路が露出している状態だと破損などのトラブルが起きる可能性がある。
+
+Javaのカプセル化は、フィールドやメソッドへのアクセスを制限すること
+クラスの外部からアクセス可能にするのは「public」
+クラスの外部からアクセス不可にするのは「private」
+
+フィールドのアクセス権をprivateにすると、フィールドにクラスの外から
+アクセスすることができない。
+==クラス内であれば、privateでも、アクセス可能==
+
+private,publicどちらでコードを書くか迷うがProgateでは
+
+フィールド...private
+メソッド...public
+
+****
+**ゲッター**
+privateにしたフィールドの情報を取り出すため
+フィールドの値を返すだけのメソッドを定義する。
+これを「ゲッター」と呼ぶ。
+「getフィールド名」とすることが一般的
+Progateでは以下を作成
+
+Person.java
+```java
+public String getMiddleName() {
+ return this.middleName;
+}
+```
+
+Main.java
+```java
+System.out.println("person2のミドルネームは" + person2.getMiddleName() + "です");
+```
+
+****
+**セッター**
+フィールドをprivateに変更すると当然外部から中身を変更することも
+できなくなる。
+そこで、フィールドの値を変更するメソッドを作成する。
+これを「セッター」と呼ぶ。
+「setフィールド名」とすることが一般的
+
+Main.java
+```java
+person1.setMiddleName("Claire");
+```
+
+Person.java
+```java
+private String middleName;
+
+public void setMiddleName(String middleName) {
+ this.middleName = middleName;
+}
+```
+
+****
