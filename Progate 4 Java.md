@@ -251,3 +251,56 @@ class Person {
  public static int count = 0;
 }
 ```
+
+**オーバーロード**
+※インスタンスフィールドに戻る
+Progateでは、インスタンスにmiddleNameというフィールドを持たせた
+[[Progate 4 Java### クラスの定義方法]]
+
+ただし、コンストラクタの引数に不用意にmiddleNameを追加すると
+middleNameを持たない対処であった場合インスタンスを生成時に
+エラーが発生してしまう。(引数が6個必要なのに、5個しか登録してない
+場合などがある)
+
+コンストラクタは以下の箇所
+```java
+1.  class クラス名 {
+3.   //コンストラクタ（インスタンス生成時に実行される）
+4.   public クラス名(){
+5.    初期化処理など
+6.   }
+7.  }
+```
+
+middlename追加は、
+```java
+class Person {
+ public String middleName;
+ Person(String firstName, String middleName, String lastName...);
+}
+```
+
+上記の問題を解決するのが、オーバーロード
+```java
+Person(String firstName, String lastName, int age, double height, double weight) {
+    Person.count++;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+    this.height = height;
+    this.weight = weight;
+  }
+  
+  // middleNameを受け取るコンストラクタを定義してください
+  Person(String firstName, String middleName, String lastName, int age, double height, double weight) {
+    Person.count++;
+    this.firstName = firstName;
+    this.middleName = middleName;
+    this.lastName = lastName;
+    this.age = age;
+    this.height = height;
+    this.weight = weight;
+  }
+```
+上記のように2つのコンストラクタを作成することで、
+オーバーロードさせる。
