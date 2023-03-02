@@ -304,3 +304,29 @@ Person(String firstName, String lastName, int age, double height, double weight)
 ```
 上記のように2つのコンストラクタを作成することで、
 オーバーロードさせる。
+
+しかし、上記のやり方だと「firstName」などの変数名を変更する場合
+2つのコンストラクタを変更しなければならない。
+この問題を解決するのが以下のコード
+```java
+Person(String firstName, String lastName, int age, double height, double weight) {
+    Person.count++;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+    this.height = height;
+    this.weight = weight;
+  }
+  
+  // middleNameを受け取るコンストラクタを定義してください
+  Person(String firstName, String middleName, String lastName, int age, double height, double weight) {
+    
+    this(firstName, lastName, age, height, weight);
+    
+    this.middleName = middleName;
+  }
+```
+this();でPersonコンストラクタを呼び出し各変数を呼び出すことが可能
+
+ちなみに、fullName();メソッドではif構文にてmiddleNameの中身がnullで
+結果を分岐して対応
