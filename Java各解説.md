@@ -51,3 +51,63 @@ public static void hello() {
  System.out.println("こんにちは");
 }
 ```
+
+### 引数を受け取るメソッド
+
+main.Java
+```java
+printData("Kate Jones");
+printData();
+```
+
+sub.java
+```java
+public static void printData(String name) {
+ System.out.println("私の名前は" + name + "です");
+}
+```
+
+### 複数の引数を受け取るメソッド
+main.java
+```java
+printData("Kate Jones",26);
+```
+
+sub.java
+```java
+public static void printData(String name, int age) {
+ System.out.println("私の名前は" + name + "です");
+ System.out.println("年齢は" + age + "歳です");
+}
+```
+
+### 戻り値のあるメソッド
+
+returnがある場合は void ⇨ String や int などのデータ型に変更
+```java
+public static String fullName(String firstName, String lastName) {
+ return firstName + " " + lastName;
+}
+```
+
+### 同じメソッド名
+
+1つ目のメソッド
+```java
+//出力場所
+printData(fullName("Kate", "Jones"), 27);
+
+public static String fullName(String firstName, String lastName) {
+ return firstName + " " + lastName;
+}
+```
+
+2つ目のメソッド
+```java
+//出力場所
+printData(fullName("John", "Christopher", "Smith"), 65);
+
+public static String fullName(String firstName, String middleName, String lastName) {
+ return firstName + middleName + lastName;
+}
+```
