@@ -28,6 +28,46 @@ class Bicycle {
   }
 }
 ```
+### Progate課題2解説
+Main.java
+```java
+class Main {
+  public static void main(String[] args) {
+    Bicycle bicycle = new Bicycle("ビアンキ", "緑");
+    bicycle.printData();
+  }
+}
+```
+
+Bicycle.java
+```java
+class Bicycle {
+  private String name;
+  private String color;
+  
+  //printDataは元々作られておらず、Mainに出力をバラで書き込んでいた。
+  //その際は、bicycle.getName()で書いていたが、
+  //Bicycle.javaに移動させたため、this.getName()に変えている。
+  public void printData() {
+    System.out.println("【自転車の情報】");
+    System.out.println("名前：" + this.getName());
+    System.out.println("色：" + this.getColor());
+  }
+
+  //Bicycleに情報を持たせるには以下必須
+  Bicycle(String name, String color) {
+    this.name = name;
+    this.color = color;
+  }
+  
+  public String getName() {
+    return this.name = name;
+  }
+  public String getColor() {
+    return this.color = color;
+  }
+}
+```
 
 ##### クラス
 Main.java
