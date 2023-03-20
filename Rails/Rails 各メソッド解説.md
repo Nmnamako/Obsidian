@@ -75,7 +75,6 @@ users = User.where.not(gender: "male")
 users = User.where.not(gender: "male").where.not(age: nil)
 ```
 繋げて使用することも可能
-
 #### mapメソッド
 配列の要素だけブロック内で処理を繰り返して、新しい配列を返す
 
@@ -105,4 +104,56 @@ h = {BANANA: 100, ORANGE: 200, MELON: 300}
 h.map{|key, value|[key.downcase, value]}.to_h
 					↓
 結果:{:banana=>100, :orange=>200, :melon=>300}
+```
+
+#### any?メソッド
+Rubyでもメソッドは、**配列などのコレクションの要素が1つでも真があればその時点で「true」を返し、全ての要素が偽なら「false」を返す。**
+
+POINT
+Rubyでは「nil」「false」は偽でそれ以外は**全て真になる**
+```ruby
+[nil, false].any?
+		↓
+結果:false
+
+[nil, false, 10].any?
+		↓
+結果:true
+
+[nil, ""].any?
+	↓
+結果:true
+```
+
+any?は条件を指定することも可能
+```ruby
+[100, 200, 300].any?{|v| v > 200}
+	↓
+結果:true
+```
+
+ブロックの条件内では別のメソッドが使える。
+even?メソッドは偶数か判定するメソッド
+```ruby
+[100,200,300].any?{|v| v.even? }
+	↓
+結果:true
+```
+
+引数を使う場合は、**引数に渡したオブジェクトと各要素が一致するか判定する**引数のオブジェクトと一致する要素が１つでもあれば「true」を返す
+```ruby
+[100,200].any?(1)
+	↓
+結果:false
+```
+
+また、引数にデータ型を入れても判別可能
+```ruby
+[100,200].any?(Integer)
+	↓
+結果:true
+
+["100","200"].any?(Integer)
+	↓
+結果:false
 ```
