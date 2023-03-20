@@ -60,3 +60,18 @@ User.where("name = 'ぴっか'")
 		↓
 結果:id:3, name:"たけし", age:25
 ```
+
+#### where.notメソッド
+whereと一緒に使用し条件に合わないものを取り出す。
+```ruby
+User.where("gender != male")
+
+users = User.where.not(gender: "male")
+```
+上記コードは、二つとも同じ
+
+```ruby
+  
+users = User.where.not(gender: "male").where.not(age: nil)
+```
+繋げて使用することも可能
