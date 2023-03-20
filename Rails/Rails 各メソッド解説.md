@@ -75,3 +75,34 @@ users = User.where.not(gender: "male")
 users = User.where.not(gender: "male").where.not(age: nil)
 ```
 繋げて使用することも可能
+
+#### mapメソッド
+配列の要素だけブロック内で処理を繰り返して、新しい配列を返す
+
+```ruby
+配列.map { |変数| 実行する処理 }
+
+配列.map do |変数|
+  実行する処理
+end
+```
+
+```ruby
+number = [1,2,3,4]
+
+new_number = number.map{|n| n * 2 }
+				↓
+結果:[20,40,60,80]
+```
+上記のように配列内の要素の左から処理を行なっている。
+
+配列以外にもハッシュなどでも使用可能
+しかし、返り値は==「配列」==になるので注意
+返り値をハッシュで返す場合は、==to_h==メソッドで返せる
+```ruby
+h = {BANANA: 100, ORANGE: 200, MELON: 300}
+
+h.map{|key, value|[key.downcase, value]}.to_h
+					↓
+結果:{:banana=>100, :orange=>200, :melon=>300}
+```
