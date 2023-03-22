@@ -164,3 +164,22 @@ even?メソッドは偶数か判定するメソッド
 includesメソッドに渡す引数は、テーブル名ではなく
 アソシエーションで定義した関連名を指定する。
 
+```ruby
+# controller側
+@owners = Owner.all
+
+# view側
+@owners.each do |owner|
+  owner.cats.each do |cat|
+    cat.name
+  end
+end
+```
+上記は「飼い主の猫だけを全てviewに表示する」が目的
+上記のようにコードを書くとN+1問題へ繋がる
+
+```ruby
+@owner = current_user.cats
+```
+DMMキャンプでは上記で解決するので
+N+1問題は起きない。
