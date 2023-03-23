@@ -42,6 +42,12 @@ class Main {
     
     // 変数numberに3を代入、再代入はデータ型を付けない
     number = 3;
+
+	// 自己代入も可能
+	number = number + 3;
+	// 自己代入には省略型がある
+	number*=2;
+	number++;
     
     // 変数numberを出力
     System.out.println(number);
@@ -54,9 +60,10 @@ class Main {
     
     // 変数nameを出力
     System.out.println(name);
-    
+
+	// double型,小数点を出す
+	System.out.println((double)number * number)
   }
 }
 ```
-
 ***
