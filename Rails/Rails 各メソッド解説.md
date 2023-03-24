@@ -183,3 +183,16 @@ end
 ```
 DMMキャンプでは上記で解決するので
 N+1問題は起きない。
+
+#### pushメソッド
+```ruby
+array = ["Google","Apple","Facebook","Amazon"]
+p array
+
+array.push("Microsoft")
+p array
+
+結果:["Google","Apple","Facebook","Amazon","Microsoft"]
+```
+
+push()メソッドの引数には、配列の末尾に要素が追加される
