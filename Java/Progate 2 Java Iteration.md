@@ -95,3 +95,22 @@ class Main {
 「変数xが2より大きいとき」を誤認し、「>」「>=」で回答した。
 「〜より大きい」「〜以上」に注意
 ***
+#### 5/15 else
+```java
+class Main {
+ public static void main(String[] args) {
+  int number = 19;
+
+  // numberが20より小さいとき、どちらでもないときの条件分岐を追加してください
+
+  if (number > 20) {
+   System.out.println("10より小さい");
+  } else if (number < 20) {
+   System.out.println("10以上、20より小さい");
+  } else {
+   System.out.println("20以上");
+  }
+ }
+}
+```
+***
