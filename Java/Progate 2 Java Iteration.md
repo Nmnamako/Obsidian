@@ -114,3 +114,23 @@ class Main {
 }
 ```
 ***
+#### 6/15 switch文
+```java
+class Main {
+ public static void main(String[] args) {
+  int n = 1;
+
+  switch(n) {
+   case 1:
+    System.out.println("大吉です");
+    break;
+   case 2:
+    System.out.println("吉です");
+    break;
+  }
+ }
+}
+```
+switch文では、caseに該当する条件の処理を実行する。
+switch文では、breakが必要になる。
+***
