@@ -170,3 +170,36 @@ class Main {
 }
 ```
 ***
+#### 9/15 for文
+```java
+clas Main {
+ public static void main(String[] args) {
+  for(int i = 1; i <= 10; i++) {
+   System.out.println(i + "回目の処理");
+  }
+ }
+}
+```
+forの条件内容に変数「i」を宣言した際に
+for文の上に「int型」の「i」を宣言しているとエラーが発生する。
+
+for文では、while文の時のように先に変数宣言してから処理を
+実行することができない？
+
+上記コードをwhileの時と同じ記述を行なったがエラー発生
+下記のコードがそれに該当する。
+```java
+// 実行時にエラーが発生する
+class Main {
+  public static void main(String[] args) {
+    // for文を用いて、繰り返し処理をつくってください
+    int i = 1;
+    
+    for (i <= 10) {
+      System.out.println(i + "回目のループです");
+      i++;
+    }
+  }
+}
+```
+***
