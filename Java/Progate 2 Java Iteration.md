@@ -265,3 +265,18 @@ lengthで中の要素の個数をカウントし、iと比較し
 その回数以下なら処理を実行
 その回数を超えたら機能停止
 ***
+#### 14/15 拡張for文の文法
+```java
+class Main {
+ public static void main(String[] args){
+  String[] names = {"test1","test2","test3"};
+
+  for(String name: names) {
+   System.out.println(name);
+  }
+ }
+}
+```
+上記コードは13/15の記述の改良版
+for文には拡張for文としてこのような記述が存在している。
+***
