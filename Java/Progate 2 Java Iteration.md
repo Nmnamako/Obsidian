@@ -212,3 +212,15 @@ class Main {
 }
 ```
 ***
+#### 11/15 配列
+```java
+class Main {
+ public static void main(String[] args) {
+  String[] names = {"test1","test2","test3"}
+
+  System.out.println(names[0]);
+  System.out.println(names[2]);
+ }
+}
+```
+***
