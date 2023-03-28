@@ -248,3 +248,20 @@ class Main {
 上記はあくまで、要素の上書きであり新規で要素を追加できる
 わけではないので注意のこと
 ***
+#### 13/15 配列と繰り返し
+```java
+class Main{
+ public static void main(String[] args){
+  String[] names = {"test1", "test2", "test3"};
+
+  for(int i = 0; i < names.length; i++){
+   System.out.println(私の名前は" + names[i] + "です);
+   
+  }
+ }
+}
+```
+lengthで中の要素の個数をカウントし、iと比較し
+その回数以下なら処理を実行
+その回数を超えたら機能停止
+***
