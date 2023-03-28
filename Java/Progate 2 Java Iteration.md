@@ -280,3 +280,37 @@ class Main {
 上記コードは13/15の記述の改良版
 for文には拡張for文としてこのような記述が存在している。
 ***
+#### 15/15 総合課題
+```java
+class Main {
+ public static void main(String[] args){
+  // 変数numbersに、与えられた数字の配列を代入
+  int[] numbers = {1, 4, 6, 9, 13, 16};
+
+  int oddSum = 0;
+  int evenSum = 0;
+
+  for(int number: numbers){
+   if(number % 2 == 0){
+    evenSum += number;
+   } else {
+    oddSum += number;
+  }
+
+  System.out.println("奇数の和は" + oddSum + "です");
+  System.out.println("偶数の和は" + evenSum + "です");
+  }
+ }
+}
+```
+
+上記コード作成時に省略型の存在を忘れていた箇所あり。
+```java
+// 下記でも可能だが省略できる
+evenSum = evenSum + number;
+
+// 省略型
+evenSum += number;
+```
+
+***
