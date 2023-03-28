@@ -223,4 +223,28 @@ class Main {
  }
 }
 ```
+javaで配列を作るには、変数名の前に配列カッコを入れ
+代入先で、ハッシュカッコを使用する。
+***
+
+#### 12/15 配列の要素を上書き
+```java
+class Main {
+ public static void main(String[] args){
+  // 変数languagesを定義し、配列を代入
+  String[] languages = {"Ruby","PHP",""Python};
+  
+  // インデックス番号が「1」の要素を出力
+  System.out.println(languages[1]);
+  
+  // インデックス番号が「1」の要素を「Java」で上書き
+  languages[1] = "Java";
+
+  // インデックス番号が「1」の要素を出力
+  System.out.println(languages[1]);
+ }
+}
+```
+上記はあくまで、要素の上書きであり新規で要素を追加できる
+わけではないので注意のこと
 ***
