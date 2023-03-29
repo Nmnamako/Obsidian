@@ -57,3 +57,21 @@ class Main {
 }
 ```
 ***
+#### 4/13 複数の引数を持つメソッド
+```java
+class Main {
+ public static void main(String[] args) {
+  printData("test1",15);
+  printData("test1",40);
+ }
+ public static void printData(String name, int age) {
+  System.out.println("私の名前は" + name + "です");
+  System.out.println("私の年齢は" + age + "です");
+ }
+}
+```
+上記のように渡す引数を「,」で区切り、メソッドのブロック内に
+「,」で区切り「データ型」「仮引数名」を記述すれば
+複数の引数が利用できる。
+
+***
