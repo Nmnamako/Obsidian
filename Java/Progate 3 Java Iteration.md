@@ -33,3 +33,27 @@ class Main {
 メソッド定義は必ず**クラス内で行う**
 
 ***
+#### 3/13 引数について
+```java
+class Main {
+ public static void main(Strng[] args) {
+  printData("test1");
+  printData("test2");
+ }
+ public static void printData(String name){
+  System.out.println("私の名前は" + name + "です")
+ }
+}
+```
+
+メソッドのブロックに「データ型」「仮引数名」を指定すると
+その仮引数名に引数を渡すことができる。
+```java
+class Main {
+ printData("test1");
+ public static void printData(データ型 仮引数名) {
+  // 処理内容
+ }
+}
+```
+***
