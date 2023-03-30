@@ -75,3 +75,31 @@ class Main {
 複数の引数が利用できる。
 
 ***
+#### 5/13 戻り値
+```java
+class Main {
+ public static void main(String[] args) {
+ String name = fullName("test1","tarou");
+ 
+ printData(name,27);
+ printData("test2",65);
+ }
+ public static String fullName(String firstName, String lastName) {
+  return firstName + " " + lastName;
+ }
+}
+```
+
+returnで戻り値を返す場合は、voidの記述が不要
+```java
+public static void メソッド名(ブロック内) {
+ // 処理記述
+}
+
+public static データ型 メソッド名(ブロック内) {
+ // 処理記述
+ return 処理記述;
+}
+```
+
+***
