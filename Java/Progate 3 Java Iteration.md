@@ -103,3 +103,31 @@ public static データ型 メソッド名(ブロック内) {
 ```
 
 ***
+#### 6/13 同名のメソッド
+同名のメソッドは原則として定義できない
+ただし**変数の型や個数が違う場合は**同名のメソッドを定義できる。
+```java
+class Main {
+ public static void main(String args) {
+  printData(fullName("test1", "tarou"),17);
+  printData(fullName("test2","test3","reiwa"),65);
+ }
+
+ public static void printData(String name) {
+  System.out.println("私の名前は" + name + "です");
+  System.out.println("年齢は" + age + "歳です");
+ }
+ 
+ public static String fullName(String firstName, String lastName) {
+  return firstName + " " + lastName; 
+ }
+ 
+ public static String fullName(String firstName, String middleName, String lastName) {
+  return firstName + middleName + lastName;
+ }
+}
+```
+
+上記のように**変数の型や個数が違う場合**は、引数の中身や数で自動的にどのメソッドを使うか割り当てられる。
+（自動的 = 条件にあったメソッド）を選別している。
+***
