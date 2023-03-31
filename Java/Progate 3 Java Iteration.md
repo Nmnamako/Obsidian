@@ -131,3 +131,38 @@ class Main {
 上記のように**変数の型や個数が違う場合**は、引数の中身や数で自動的にどのメソッドを使うか割り当てられる。
 （自動的 = 条件にあったメソッド）を選別している。
 ***
+#### 7/13 メソッドからメソッドで呼ぶ
+```java
+class Main {
+ public static void main(String args) {
+  printData(fullName("test1","tarou"), 25, 1.6, 50.0);
+  printData(fullName("test2","test3","reiwa"), 65, 1.75, 80.0);
+ }
+
+ public static void printData(String name, int age, double height, double weight) {
+  System.out.println("私の名前は" + name + "です");
+  System.out.println("年齢は" + age + "歳です");
+  System.out.println("身長は" + height + "mです");
+  System.out.println("体重は" + weight + "kgです");
+
+  double bmi = bmi(height, weight);
+
+  System.out.println("BMIは" + bmi + "です");
+ }
+ 
+ public static String fullName(String firstName, String lastName) {
+  return firstName + " " + lastName;
+ }
+
+ public static String fullName(String firstName, String middleName, String lastName) {
+  return firstName + " " + middleName + " " + lastName;
+ }
+
+ public static double bmi(double height, double weight) {
+  return weight / height / height;
+ }
+}
+```
+
+上記のようにprintDataメソッド内で、bmi()メソッドを呼び出している。
+***
