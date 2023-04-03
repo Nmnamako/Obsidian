@@ -329,4 +329,40 @@ Mathのメソッドを扱う際は以下の通り
 ```java
 Math.round(引数);
 ```
+
+なお、Mathはよく呼び出されるライブラリなので
+importで明記する必要はなく、普通にroundメソッドなど
+呼び出せるとのこと
+***
+#### 12/13 スキャナー
+```java
+import java.util.Scanner;
+
+class Main {
+  public static void main (String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    
+    System.out.print("名前： ");
+    
+    String name = scanner.next();
+    
+    System.out.println("こんにちは" + name + "さん");
+  }
+}
+```
+
+スキャナーの使い方
+```java
+// 外部ライブラリを呼び出し
+import java.util.Scanner;
+
+// スキャナーの値を初期化している
+Scanner scanner = new Scanner(System.in);
+
+// 入力待ちになり入力された値をnameへ格納
+String name = scanner.next();
+```
+
+Progateでは
+スキャナーの初期化はメソッド内で行った
 ***
