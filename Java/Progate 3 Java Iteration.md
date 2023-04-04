@@ -366,3 +366,89 @@ String name = scanner.next();
 Progateでは
 スキャナーの初期化はメソッド内で行った
 ***
+#### 13/13 総合課題
+Scannerで整数や小数を受け取る場合は以下の通り
+```java
+// 文字
+String name = scanner.next();
+
+// 整数
+int age = scanner.nextInt();
+
+// 小数
+double weight = scanner.nextDouble();
+```
+
+
+Main.java
+```java
+import java.util.Scanner;
+
+class Main{
+ public static void main(String[] args) {
+  Scanner scanner = new scanner(System.in);
+
+  System.out.print("名前：");
+  // 文字列の入力を受け取る
+  String firstName = scanner.next();
+    
+  System.out.print("名字：");
+  // 文字列の入力を受け取る
+  String lastName = scanner.next();
+    
+  System.out.print("年齢：");
+  // 整数の入力を受け取る
+  int age = scanner.nextInt();
+    
+  System.out.print("身長(m)：");
+  // 小数の入力を受け取る
+  double height = scanner.nextDouble();
+    
+  System.out.print("体重(kg)：");
+  // 小数の入力を受け取る
+  double weight = scanner.nextDouble();
+
+
+  Person.printData(Person.fullName(firstName, lastName), age, height, weight);
+ }
+}
+```
+
+Person.java
+```java
+class Person {
+  public static void printData(String name, int age, double height, double weight) {
+    System.out.println("私の名前は" + name + "です");
+    System.out.println("年齢は" + age + "歳です");
+    System.out.println("身長は" + height + "mです");
+    System.out.println("体重は" + weight + "kgです");
+    double bmi = bmi(height, weight);
+    System.out.println("BMIは" + Math.round(bmi) + "です");
+
+    if (isHealthy(bmi)) {
+      System.out.println("標準値です");
+    } else {
+      System.out.println("標準値の範囲外です");
+    }
+  }
+
+  public static String fullName(String firstName, String lastName) {
+    return firstName + " " + lastName;
+  }
+
+  public static String fullName(String firstName, String middleName, String lastName) {
+    return firstName + " " + middleName + " " + lastName;
+  }
+  
+  public static double bmi(double height, double weight) {
+    return weight / height / height;
+  }
+  
+  public static boolean isHealthy(double bmi) {
+    return bmi >= 18.5 && bmi < 25.0;
+  }
+}
+
+```
+
+***
