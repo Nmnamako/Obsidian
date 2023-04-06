@@ -3,6 +3,7 @@
 指向は「〜を中心に」
 Prpgate参照
 
+***
 #### 1/21 クラスとインスタンス
 Main.java
 ```java
@@ -36,27 +37,26 @@ Person person = new Person();
 
 ***
 #### 2/21 インスタンスメソッド
+
 Main.java
 ```java
 class Main {
   public static void main(String[] args) {
     Person person1 = new Person();
-    // person1に対して、helloメソッドを呼び出してください
+
     person1.hello();
     
     Person person2 = new Person();
-    // person2に対して、helloメソッドを呼び出してください
+
     person2.hello();
     
   }
 }
-
 ```
 
 Person.java
 ```java
 class Person {
-  // インスタンスメソッドhelloを定義してください
   public void hello() {
     System.out.println("こんにちは");
   }
@@ -64,8 +64,19 @@ class Person {
 }
 ```
 
+
 person1.hello();でメソッド呼び出し
 ここでの問題はなかった
+
+インスタンスメソッドを定義する方法は以下の通り
+「static」が含まれていないが、後に解説とのこと
+```java
+class Person {
+ public void hello() {
+  System.out.println("こんにちは");
+ }
+}
+```
 ***
 #### 3/21 インスタンスフィールド
 インスタンスフィールドは情報を格納する変数に過ぎない
@@ -118,4 +129,41 @@ class Person {
 ```java
 person1.name = "test1";
 ```
+
+インスタンスフィールドの出力方法は以下の通り
+```java
+System.out.println(person1.name);
+```
+***
+#### 4/21 this
+
+Main.java
+```java
+class Main {
+  public static void main(String[] args) {
+    Person person1 = new Person();
+    person1.name = "Kate Jones";
+    person1.hello();
+
+    Person person2 = new Person();
+    person2.name = "John Christopher Smith";
+    person2.hello();
+  }
+}
+
+```
+
+Person.java
+```java
+class Person {
+  public String name;
+  public void hello() {
+    System.out.println("こんにちは、私は" + this.name + "です");
+  }
+}
+
+```
+
+thisはクラス内のメソッドの定義の中でのみ使用可能
+thisはメソッドが呼び出さレた時に、そのメソッドを**呼び出しているインスタンスに置き換えられる**
 ***
