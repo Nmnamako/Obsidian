@@ -67,3 +67,55 @@ class Person {
 person1.hello();でメソッド呼び出し
 ここでの問題はなかった
 ***
+#### 3/21 インスタンスフィールド
+インスタンスフィールドは情報を格納する変数に過ぎない
+その変数はクラスの一番上に定義する。
+
+Main.java
+```java
+class Main {
+  public static void main(String[] args) {
+    Person person1 = new Person();
+    person1.hello();
+    
+    person1.name = "Kate Jones";
+    
+    System.out.println(person1.name);
+
+    Person person2 = new Person();
+    person2.hello();
+    
+    person2.name = "John Christopher Smith";
+    
+    System.out.println(person2.name);
+    
+  }
+}
+
+```
+
+Person.java
+```java
+class Person {
+  // インスタンスフィールドnameを定義してください
+  public String name;
+
+  public void hello() {
+    System.out.println("こんにちは");
+  }
+}
+
+```
+
+インスタンスフィールドの定義方法は以下の通り
+```java
+class Person {
+ public String name;
+}
+```
+
+インスタンスフィールドに代入するには以下の通り
+```java
+person1.name = "test1";
+```
+***
