@@ -12,6 +12,7 @@ class Main {
 ```
 上記でhello()メソッドを構築し、mainメソッドでhello()メソッドを呼び出している。
 ***
+
 #### 2/13 メソッドの定義
 ```java
 class Main {
@@ -41,7 +42,7 @@ class Main {
   printData("test2");
  }
  public static void printData(String name){
-  System.out.println("私の名前は" + name + "です")
+  System.out.println("私の名前は" + name + "です");
  }
 }
 ```
@@ -57,6 +58,7 @@ class Main {
 }
 ```
 ***
+
 #### 4/13 複数の引数を持つメソッド
 ```java
 class Main {
@@ -131,6 +133,7 @@ class Main {
 上記のように**変数の型や個数が違う場合**は、引数の中身や数で自動的にどのメソッドを使うか割り当てられる。
 （自動的 = 条件にあったメソッド）を選別している。
 ***
+
 #### 7/13 メソッドからメソッドで呼ぶ
 ```java
 class Main {
@@ -166,6 +169,7 @@ class Main {
 
 上記のようにprintDataメソッド内で、bmi()メソッドを呼び出している。
 ***
+
 #### 8/13 真偽値を返す
 ```java
 class Main {
@@ -213,6 +217,9 @@ class Main {
 かつ == ||
 
 ***
+#### 9/13 クラスに触れてみよう
+Progate参照
+
 #### 10/13 クラスの定義
 Main.java
 ```java
@@ -273,6 +280,7 @@ Person.printData(Person.fullName(...));
 
 ==メソッドないからメソッドを呼び出す際に頭にクラス名の書き忘れがあったので注意のこと==
 ***
+
 #### 11/13 外部ライブラリ
 ```java
 import java.lang.Math;
