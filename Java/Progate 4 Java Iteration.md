@@ -83,7 +83,7 @@ class Person {
 その変数はクラスの一番上に定義する。
 
 Main.java
-```java
+``` java
 class Main {
   public static void main(String[] args) {
     Person person1 = new Person();
@@ -167,3 +167,46 @@ class Person {
 thisはクラス内のメソッドの定義の中でのみ使用可能
 thisはメソッドが呼び出さレた時に、そのメソッドを**呼び出しているインスタンスに置き換えられる**
 ***
+#### 5/21 インスタンスフィールドへの値セット
+Main.java
+``` java
+class Main {
+  public static void main(String[] args) {
+    Person person1 = new Person();
+    Person person2 = new Person();
+  }
+}
+
+```
+
+Perosn.java
+``` java
+class Person {
+  public String name;
+
+  // コンストラクタを定義する
+  Person(){
+    System.out.println("インスタンスが生成されました");
+  }
+
+  public void hello() {
+    System.out.println("こんにちは、私は" + this.name + "です");
+  }
+}
+
+```
+
+コンストラクタとは
+コンストラクタは、newを使ってインスタンスを生成した後に
+**自動で呼び出される**特別なメソッド
+コンストラクタの定義方法は以下の通り
+``` java
+class クラス名 {
+ クラス名() {
+  // インスタンス生成時に実行したい処理
+ }
+}
+```
+コンストラクタの定義方法は決まっている。
+①コンストラクタ名はクラス名と同じにする
+②戻り値を書いてはいけない(voidも書かない)
