@@ -210,3 +210,65 @@ class クラス名 {
 コンストラクタの定義方法は決まっている。
 ①コンストラクタ名はクラス名と同じにする
 ②戻り値を書いてはいけない(voidも書かない)
+
+***
+#### 6/21 コンストラクタ
+newでインスタンスを作る際に「new クラス名()」の()には
+引数を渡すことができ、その引数は呼び出される直後に
+コンストラクタに受け渡される。
+
+
+Main.java
+```java
+class Main {
+  public static void main(String[] args) {
+    // newの引数に「Kate Jones」を渡す
+    Person person1 = new Person("Kate Jones");
+    person1.hello();
+    
+    // newの引数に「John Christopher Smith」を渡す
+    Person person2 = new Person("John Christopher Smith");
+    person2.hello();
+  }
+}
+
+```
+
+Person.java
+```java
+class Person {
+  public String name;
+
+  // コンストラクタがString型の引数を受け取る
+  Person(String name) {
+    System.out.println("インスタンスが生成されました");
+    // インスタンスフィールドnameに値をセット
+    this.name = name;
+    
+  }
+
+  public void hello() {
+    System.out.println("こんにちは、私は" + this.name + "です");
+  }
+}
+
+```
+
+下記の記述でインスタンス生成時にインスタンスフィールドに
+渡したい引数をセットする
+``` java
+Person perosn = new Person("test1");
+```
+
+コンストラクタでも、thisを用いてインスタンスを利用することができる。引数を受け取りさいは、**変数宣言が必要**
+``` java
+class Person {
+ public String name;
+ 
+ Person(String name) {
+  this.name = name;
+ }
+}
+```
+
+***
