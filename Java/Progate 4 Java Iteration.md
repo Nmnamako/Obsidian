@@ -272,3 +272,49 @@ class Person {
 ```
 
 ***
+#### 7/21 フィールドとコンストラクタ
+
+Main.java
+``` java
+class Main {
+  public static void main(String[] args) {
+    Person person1 = new Person("Kate", "Jones", 27, 1.6, 50.0);
+    
+    System.out.println(person1.firstName);
+    System.out.println(person1.lastName);
+    System.out.println(person1.age);
+    System.out.println(person1.height);
+    System.out.println(person1.weight);
+  }
+}
+
+```
+
+Person.java
+``` java
+class Person {
+  // 以下にインスタンスフィールドを定義
+  public String firstName;
+  public String lastName;
+  public int age;
+  public double height;
+  public double weight;
+  // 以下にコンストラクタを定義し、インスタンスフィールドに値をセットしている
+  Person(String firstName, String lastName, int age, double height, double weight) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+    this.height = height;
+    this.weight = weight;
+  }
+}
+
+```
+
+インスタンスフィールド定義方法を忘れていた
+``` java
+public String name;
+```
+
+
+***
