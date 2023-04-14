@@ -382,7 +382,7 @@ class Person {
 ```
 
 ***
-#### 11/21 インスタンスメソッド
+#### 11/21 インスタンスメソッド(1)
 
 Main.java
 ```java
@@ -449,4 +449,73 @@ class Person {
  }
 }
 ```
+***
+#### 12/21 インスタンスメソッド(2)
+Main.java
+```java
+class Main {
+  public static void main(String[] args) {
+    Person person1 = new Person("Kate", "Jones", 27, 1.6, 50.0);
+    person1.printData();
+  }
+}
+
+```
+
+Person.java
+```java
+class Person {
+  public String firstName;
+  public String lastName;
+  public int age;
+  public double height;
+  public double weight;
+
+  Person(String firstName, String lastName, int age, double height, double weight) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+    this.height = height;
+    this.weight = weight;
+  }
+
+  public String fullName() {
+    return this.firstName + " " + this.lastName;
+  }
+
+  public double bmi() {
+    return this.weight / this.height / this.height;
+  }
+  
+  // printDataメソッドを定義
+  public void printData() {
+    System.out.println("私の名前は" + this.fullName() + "です");
+    System.out.println("年齢は" + this.age + "歳です");
+    System.out.println("BMIは" + Math.round(this.bmi()) + "です");
+  }
+  
+}
+
+```
+
+thisを使えばメソッド内で、他のメソッドを呼び出すことが可能
+``` java
+class Person {
+ public String firstName;
+ public String lastName;
+
+ Person(String firstName, String lastName){
+  this.firstName = firstName;
+  this.lastName = lastName;
+ }
+ public String fullName() {
+  return firstName + " " + lastName;
+ }
+
+ public void printData() {
+  System.out.println("名前は" + this.fullName() + "です。");
+ }
+}
+```
+
 ***
