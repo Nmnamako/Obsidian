@@ -211,7 +211,6 @@ class クラス名 {
 ①コンストラクタ名はクラス名と同じにする
 ②戻り値を書いてはいけない(voidも書かない)
 
-***
 #### 6/21 コンストラクタ
 newでインスタンスを作る際に「new クラス名()」の()には
 引数を渡すことができ、その引数は呼び出される直後に
@@ -278,13 +277,8 @@ Main.java
 ``` java
 class Main {
   public static void main(String[] args) {
-    Person person1 = new Person("Kate", "Jones", 27, 1.6, 50.0);
-    
-    System.out.println(person1.firstName);
-    System.out.println(person1.lastName);
-    System.out.println(person1.age);
-    System.out.println(person1.height);
-    System.out.println(person1.weight);
+    Person person1 = new Person();
+    Person person2 = new Person();
   }
 }
 
@@ -293,19 +287,15 @@ class Main {
 Person.java
 ``` java
 class Person {
-  // 以下にインスタンスフィールドを定義
-  public String firstName;
-  public String lastName;
-  public int age;
-  public double height;
-  public double weight;
-  // 以下にコンストラクタを定義し、インスタンスフィールドに値をセットしている
-  Person(String firstName, String lastName, int age, double height, double weight) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.age = age;
-    this.height = height;
-    this.weight = weight;
+  public String name;
+
+  // コンストラクタを定義
+  Person(){
+    System.out.println("インスタンスが生成されました");
+  }
+
+  public void hello() {
+    System.out.println("こんにちは、私は" + this.name + "です");
   }
 }
 
@@ -319,6 +309,81 @@ public String name;
 
 ***
 #### 8/21 インスタンスメソッド
+Main.java
+```java
+class Main {
+  public static void main(String[] args) {
+    Person person1 = new Person("Kate", "Jones", 27, 1.6, 50.0);
+
+    System.out.println(person1.fullName());
+    System.out.println(person1.age);
+    System.out.println(person1.bmi());
+  }
+}
+
+```
+
+Person.java
+```java
+class Person {
+  public String name;
+
+  // コンストラクタがString型の引数を受け取る
+  Person(String name) {
+    System.out.println("インスタンスが生成されました");
+    // インスタンスフィールドnameに値をセット
+    this.name = name;
+  }
+
+  public void hello() {
+    System.out.println("こんにちは、私は" + this.name + "です");
+  }
+}
+
+```
+***
+#### 9/21 本章は確認のためスキップ
+
+#### 10/21 フィールドとコンストラクタ
+Main.java
+```java
+class Main {
+  public static void main(String[] args) {
+    Person person1 = new Person("Kate", "Jones", 27, 1.6, 50.0);
+    
+    System.out.println(person1.firstName);
+    System.out.println(person1.lastName);
+    System.out.println(person1.age);
+    System.out.println(person1.height);
+    System.out.println(person1.weight);
+  }
+}
+
+```
+
+Person.java
+```java
+class Person {
+  public String firstName;
+  public String lastName;
+  public int age;
+  public double height;
+  public double weight;
+  
+  Person(String firstName, String lastName, int age, double height, double weight) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+    this.height = height;
+    this.weight = weight;
+  }
+}
+
+```
+
+***
+#### 11/21 インスタンスメソッド
+
 Main.java
 ```java
 class Main {
@@ -350,12 +415,12 @@ class Person {
     this.weight = weight;
   }
   
-  // fullNameメソッドを定義してください
+  // fullNameメソッドを定義
   public String fullName() {
     return this.firstName + " " + this.lastName;
   }
   
-  // bmiメソッドを定義してください
+  // bmiメソッドを定義
   public double bmi() {
     return this.weight / this.height / this.height;
   }
