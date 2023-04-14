@@ -318,3 +318,70 @@ public String name;
 
 
 ***
+#### 8/21 インスタンスメソッド
+Main.java
+```java
+class Main {
+  public static void main(String[] args) {
+    Person person1 = new Person("Kate", "Jones", 27, 1.6, 50.0);
+
+    System.out.println(person1.fullName());
+    System.out.println(person1.age);
+    System.out.println(person1.bmi());
+  }
+}
+
+```
+
+Person.java
+```java
+class Person {
+  public String firstName;
+  public String lastName;
+  public int age;
+  public double height;
+  public double weight;
+
+  Person(String firstName, String lastName, int age, double height, double weight) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+    this.height = height;
+    this.weight = weight;
+  }
+  
+  // fullNameメソッドを定義してください
+  public String fullName() {
+    return this.firstName + " " + this.lastName;
+  }
+  
+  // bmiメソッドを定義してください
+  public double bmi() {
+    return this.weight / this.height / this.height;
+  }
+  
+}
+
+```
+
+メソッド内にthisを入れなければならなかった
+
+今回はインストラクタが存在するので、メソッドの()内には
+何も記述する必要がない
+また、Java3で作成したメソッドには「static」が入っていたが
+今回は入れていない。（staticに関する説明はまだない）
+``` java
+class Person {
+ public String name;
+ 
+ Person(String firstName, String lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+ }
+
+ public String fullName() {
+  return this.firstName + " " + this.lastName;
+ }
+}
+```
+***
