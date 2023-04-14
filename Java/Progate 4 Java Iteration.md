@@ -519,3 +519,89 @@ class Person {
 ```
 
 ***
+#### 13/21 クラスフィールド
+
+**クラスフィールド**
+クラスフィールドの定義は以下の通り
+``` java
+// クラスフィールド名
+public static int count;
+```
+クラスフィールへのアクセスは以下の通り
+``` java
+クラス名.クラスフィールド名
+```
+
+
+**インスタンスフィールド**
+インスタンスフィールドの定義は以下の通り
+``` java
+public String firstName;
+```
+
+**二つの違い**
+定義位置：クラスフィールドはクラスレベルで定義され、
+クラス内のどのメソッドからも直接アクセスすることができる。
+一方インスタンスフィールドはインスタンスレベルで定義され
+インスタンス(オブジェクト)が作成された際にそれぞれのオブジェクトに対して独立したメモリ領域に割り当てられる。
+
+Main.java
+``` java
+class Main {
+  public static void main(String[] args) {
+    Person person1 = new Person("Kate", "Jones", 27, 1.6, 50.0);
+    person1.printData();
+    
+    Person person2 = new Person("John", "Smith", 65, 1.75, 80.0);
+    person2.printData();
+    
+    // 「合計◯◯人です」と出力
+    System.out.println("合計" + Person.count + "人です");
+    
+  }
+}
+
+```
+
+Person.java
+``` java
+class Person {
+  // int型のクラスフィールドcountを定義し、0を代入
+  public static int count = 0;
+  
+  public String firstName;
+  public String lastName;
+  public int age;
+  public double height, weight;
+
+  Person(String firstName, String lastName, int age, double height, double weight) {
+    // 変数countに1を足す
+    Person.count++;
+    
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+    this.height = height;
+    this.weight = weight;
+  }
+
+  public String fullName() {
+    return this.firstName + " " + this.lastName;
+  }
+
+  public double bmi() {
+    return this.weight / this.height / this.height;
+  }
+  
+  public void printData() {
+    System.out.println("私の名前は" + this.fullName() + "です");
+    System.out.println("年齢は" + this.age + "歳です");
+    System.out.println("BMIは" + Math.round(this.bmi()) + "です");
+  }
+}
+
+```
+
+クラスフィールドでcountを定義しているので、
+インスタンスが作成されるたびに、Person()コンストラクタが呼び出され、countが1足されていく
+***
