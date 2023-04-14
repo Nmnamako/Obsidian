@@ -605,3 +605,103 @@ class Person {
 クラスフィールドでcountを定義しているので、
 インスタンスが作成されるたびに、Person()コンストラクタが呼び出され、countが1足されていく
 ***
+#### 14/21 クラスメソッド
+
+クラスメソッドの定義は以下の通り
+クラスフィールドと同じで、staticをつけるだけでいい
+``` java
+class Person {
+ public static 戻り値の型 メソッド名() {
+  //処理を記述
+ }
+}
+```
+
+Java3で作ったメソッドは全てクラスメソッド
+``` java
+class Main {
+ public static void main(String[] args){
+  Person.printCount();
+  Person person1 = new Person(...);
+  Person.printCount();
+ }
+}
+
+//コンソール結果は以下の通り
+
+```
+
+Main.java
+``` java
+class Main {
+  public static void main(String[] args) {
+    Person person1 = new Person("Kate", "Jones", 27, 1.6, 50.0);
+    person1.printData();
+    
+    Person person2 = new Person("John", "Smith", 65, 1.75, 80.0);
+    person2.printData();
+    
+    // printCountメソッドを呼び出す
+    Person.printCount();
+    
+  }
+}
+
+```
+
+Person.java
+``` java
+class Person {
+  public static int count = 0;
+  public String firstName, lastName;
+  public int age;
+  public double height, weight;
+
+  Person(String firstName, String lastName, int age, double height, double weight) {
+    Person.count++;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+    this.height = height;
+    this.weight = weight;
+  }
+
+  public String fullName() {
+    return this.firstName + " " + this.lastName;
+  }
+
+  public void printData() {
+    System.out.println("私の名前は" + this.fullName() + "です");
+    System.out.println("年齢は" + this.age + "歳です");
+    System.out.println("BMIは" + Math.round(this.bmi()) + "です");
+  }
+
+  public double bmi() {
+    return this.weight / this.height / this.height;
+  }
+
+  // クラスメソッドprintCount()を定義
+  public static void printCount() {
+    System.out.println("合計" + Person.count + "人です");
+  }
+  
+}
+
+```
+
+
+コード作成次に以下のコードミスがあった
+this.countではクラスフィールドを呼び出せない
+``` java
+//正解
+public static void printCount() {
+    System.out.println("合計" + Person.count + "人です");
+  }
+
+//間違い
+public static void printCount() {
+ System.out.println("合計" + this.count + "人です");
+}
+```
+
+***
