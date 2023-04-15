@@ -792,3 +792,99 @@ class Person {
 ```
 
 ***
+#### 16/21 他のコンストラクタを呼び出す
+コンストラクタをただオーバーロードすると
+同じ内容のものが重複してしまう。
+```java
+Person(String firstName, String lastName, int age){
+ this.firstName = firstName;
+ this.lastName = lastName;
+ this.age = age;
+}
+
+Person(String firstName, String middleName, String lastName, int age){
+ this.firstName = firstName;
+ this.middleName = middleName;
+ this.lastName = lastName;
+ this.age = age;
+}
+```
+上記の様に、middleName以外が重複している。
+この場合以下の様に記述すると記述量を減らせる
+```java
+Person(String firstName, String lastName, int age){
+ this.firstName = firstName;
+ this.lastName = lastName;
+ this.age = age;
+}
+
+Person(String firstName, String middleName, String lastName, int age){
+ this(firstName, lastName, age);
+ this.middleName = middleName;
+}
+```
+上記の様に、this(重複した引数)を書くと省略できる。
+また、this()はコンストラクタの**先頭にしか記述できない**
+
+Main.java
+```java
+class Main {
+  public static void main(String[] args) {
+    Person person1 = new Person("Kate", "Jones", 27, 1.6, 50.0);
+    person1.printData();
+    Person person2 = new Person("John", "Christopher", "Smith", 65, 1.75, 80.0);
+    person2.printData();
+    Person.printCount();
+  }
+}
+
+```
+
+Person.java
+```java
+class Person {
+  public static int count = 0;
+  public String firstName;
+  public String middleName;
+  public String lastName;
+  public int age;
+  public double height, weight;
+
+  Person(String firstName, String lastName, int age, double height, double weight) {
+    Person.count++;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+    this.height = height;
+    this.weight = weight;
+  }
+
+  Person(String firstName, String middleName, String lastName, int age, double height, double weight) {
+    // this()を用いて、コンストラクタを呼び出す
+    this(firstName, lastName, age, height, weight);
+    
+    this.middleName = middleName;
+  }
+
+  public String fullName() {
+    return this.firstName + " " + this.lastName;
+  }
+
+  public void printData() {
+    System.out.println("私の名前は" + this.fullName() + "です");
+    System.out.println("年齢は" + this.age + "歳です");
+    System.out.println("BMIは" + Math.round(this.bmi()) + "です");
+  }
+
+  public double bmi() {
+    return this.weight / this.height / this.height;
+  }
+
+  public static void printCount() {
+    System.out.println("合計" + Person.count + "人です");
+  }
+}
+
+```
+
+***
