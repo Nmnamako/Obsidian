@@ -888,3 +888,96 @@ class Person {
 ```
 
 ***
+#### 17/21 fullNameメソッドの中身について
+firstName, lastName
+firstName, midlleName, lastName
+上記の様に引数の数が違うとfullNameメソッドがうまく動かない
+正確にはmiddleNameの中身が表示されない。
+
+解決方法としては以下の通り
+``` java
+if (middleName == null) {
+ firstName + " " + lastName;
+} else {
+ firstName + " " + middleName + " " + lastName;
+}
+```
+上記の様にif文で分岐させればOK
+middleNameに値が無ければデフォルトで「null」が入れられる
+初期値は以下の通り
+``` java
+String = null;
+int = 0;
+double = 0.0;
+boolean = false;
+```
+
+
+Main.java
+``` java
+class Main {
+  public static void main(String[] args) {
+    Person person1 = new Person("Kate", "Jones", 27, 1.6, 50.0);
+    person1.printData();
+    Person person2 = new Person("John", "Christopher", "Smith", 65, 1.75, 80.0);
+    person2.printData();
+    Person.printCount();
+  }
+}
+
+```
+
+Person.java
+```java
+class Person {
+  public static int count = 0;
+  public String firstName;
+  public String middleName;
+  public String lastName;
+  public int age;
+  public double height;
+  public double weight;
+
+  Person(String firstName, String lastName, int age, double height, double weight) {
+    Person.count++;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+    this.height = height;
+    this.weight = weight;
+  }
+
+  Person(String firstName, String middleName, String lastName, int age, double height, double weight) {
+    this(firstName, lastName, age, height, weight);
+    this.middleName = middleName;
+  }
+
+  public String fullName() {
+    // 以下を、middleNameがない場合とある場合で条件分岐を追加
+    if (middleName == null) {
+      return this.firstName + " " + this.lastName;
+    } else {
+      return this.firstName + " " + this.middleName + " " + this.lastName; 
+    }
+  }
+
+  public void printData() {
+    System.out.println("私の名前は" + this.fullName() + "です");
+    System.out.println("年齢は" + this.age + "歳です");
+    System.out.println("身長は" + this.height + "mです");
+    System.out.println("体重は" + this.weight + "kgです");
+    System.out.println("BMIは" + Math.round(this.bmi()) + "です");
+  }
+
+  public double bmi() {
+    return this.weight / this.height / this.height;
+  }
+
+  public static void printCount() {
+    System.out.println("合計" + Person.count + "人です");
+  }
+}
+
+```
+
+***
