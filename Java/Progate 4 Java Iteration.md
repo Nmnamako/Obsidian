@@ -1142,3 +1142,108 @@ class Person {
 ```
 
 ***
+#### 20/21 セッター
+privateで定義されているフィールドに値を入れようとすると
+ゲッター同様にそれ専用にメソッドを作らなければならない
+
+Main.java
+```java
+class Main {
+  public static void main(String[] args) {
+    Person person1 = new Person("Kate", "Jones", 27, 1.6, 50.0);
+    person1.printData();
+    Person person2 = new Person("John", "Christopher", "Smith", 65, 1.75, 80.0);
+    person2.printData();
+
+    System.out.println("----------------------");
+    // person1のmiddleNameフィールドの値に入れる
+    person1.setMiddleName("Claire");
+    
+    System.out.println("ミドルネームを" + person1.getMiddleName() + "に変更しました");
+    person1.printData();
+  }
+}
+
+```
+
+Person.java
+```java
+class Person {
+  private static int count = 0;
+  private String firstName;
+  private String middleName;
+  private String lastName;
+  private int age;
+  private double height;
+  private double weight;
+
+  Person(String firstName, String lastName, int age, double height, double weight) {
+    Person.count++;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+    this.height = height;
+    this.weight = weight;
+  }
+
+  Person(String firstName, String middleName, String lastName, int age, double height, double weight) {
+    this(firstName, lastName, age, height, weight);
+    this.middleName = middleName;
+  }
+
+  public String getMiddleName() {
+    return this.middleName;
+  }
+
+  // middleNameフィールドのセッターを定義
+  public void setMiddleName(String middleName) {
+    this.middleName = middleName;
+  }
+
+  public String fullName() {
+    if (this.middleName == null) {
+      return this.firstName + " " + this.lastName;
+    } else {
+      return this.firstName + " " + this.middleName + " " + this.lastName;
+    }
+  }
+
+  public void printData() {
+    System.out.println("私の名前は" + this.fullName() + "です");
+    System.out.println("年齢は" + this.age + "歳です");
+    System.out.println("BMIは" + Math.round(this.bmi()) + "です");
+  }
+
+  public double bmi() {
+    return this.weight / this.height / this.height;
+  }
+
+  public static void printCount() {
+    System.out.println("合計" + Person.count + "人です");
+  }
+}
+
+```
+
+セッター定義時に以下のミスがあった
+入力されたmiddleNameをメソッドに入る様にしないといけない
+メソッドに入れる引数を指定していなかった
+``` java
+public void setMiddleName(){
+ this.middleName = middleName;
+}
+
+//以下が正解
+public void setMiddleName(String middleName) {
+ this.middleName = middleName;
+}
+```
+
+また、渡す値の記入方法のミスがあった
+``` java
+person1.middleName = setMiddleName("test1");
+
+//以下が正解
+person1.middleName = "test1";
+```
+***
