@@ -1053,3 +1053,92 @@ class Person {
 ```
 
 ***
+#### 19/21 ゲッター
+カプセル化で情報を直接取り出すことはできない
+``` java
+Person2.middleName;
+```
+
+カプセル化されたフィールドから情報を取り出すには
+ゲッターという情報を取り出すためだけのメソッドを
+作る必要がある
+``` java
+public String getMiddleName(){
+ return this.middleName;
+}
+```
+
+Main.java
+```java
+class Main {
+  public static void main(String[] args) {
+    Person person1 = new Person("Kate", "Jones", 27, 1.6, 50.0);
+    person1.printData();
+    Person person2 = new Person("John", "Christopher", "Smith", 65, 1.75, 80.0);
+    person2.printData();
+
+    System.out.println("----------------------");
+    // person2に対して、getMiddleNameメソッドを呼び出し、「person2のミドルネームは◯◯です」と出力してください
+    System.out.println("person2のミドルネームは" + person2.getMiddleName() + "です");
+    
+  }
+}
+
+```
+
+Person.java
+```java
+class Person {
+  private static int count = 0;
+  private String firstName;
+  private String middleName;
+  private String lastName;
+  private int age;
+  private double height;
+  private double weight;
+
+  Person(String firstName, String lastName, int age, double height, double weight) {
+    Person.count++;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+    this.height = height;
+    this.weight = weight;
+  }
+
+  Person(String firstName, String middleName, String lastName, int age, double height, double weight) {
+    this(firstName, lastName, age, height, weight);
+    this.middleName = middleName;
+  }
+
+  // middleNameフィールドのゲッターを定義
+  public String getMiddleName() {
+    return this.middleName;
+  }
+
+  public String fullName() {
+    if (this.middleName == null) {
+      return this.firstName + " " + this.lastName;
+    } else {
+      return this.firstName + " " + this.middleName + " " + this.lastName;
+    }
+  }
+
+  public void printData() {
+    System.out.println("私の名前は" + this.fullName() + "です");
+    System.out.println("年齢は" + this.age + "歳です");
+    System.out.println("BMIは" + Math.round(this.bmi()) + "です");
+  }
+
+  public double bmi() {
+    return this.weight / this.height / this.height;
+  }
+
+  public static void printCount() {
+    System.out.println("合計" + Person.count + "人です");
+  }
+}
+
+```
+
+***
