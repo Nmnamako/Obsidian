@@ -148,3 +148,74 @@ class Bicycle {
 private String name, color;
 ```
 ***
+#### 5/10 自転車を走らせる
+Main.java
+```java
+class Main {
+  public static void main(String[] args) {
+    Bicycle bicycle = new Bicycle("ビアンキ", "緑");
+    //System.out.println("【自転車の情報】");
+    //System.out.println("名前：" + bicycle.getName());
+    //System.out.println("色：" + bicycle.getColor());
+    
+    bicycle.printData();
+    System.out.println("-----------------");
+    bicycle.run(10);
+  }
+}
+```
+
+Bicycle.java
+```java
+class Bicycle {
+  private String name, color;
+  private int distance;
+  
+  Bicycle(String name, String color) {
+    this.name = name;
+    this.color = color;
+  }
+  
+  public String getName() {
+    return this.name = name;
+  }
+  
+  public String getColor() {
+    return this.color = color;
+  }
+  
+  public int getDistance() {
+    return this.distance = distance;
+  }
+  
+  public void run(int distance) {
+    System.out.println(distance + "km走ります");
+    System.out.println("走行距離：" + distance + "km");
+  }
+  
+  public void printData() {
+    System.out.println("【自転車の情報】");
+    System.out.println("名前：" + this.getName());
+    System.out.println("色：" + this.getColor());
+    System.out.println("走行距離：" + this.getDistance() + "km");
+  }
+}
+```
+
+
+上記作成時に以下のミスがあった
+``` java
+// 以下は正解
+public void run(int distance) {
+  System.out.println(distance + "km走ります");
+  System.out.println("走行距離：" + distance + "km");
+}
+
+// 以下がミス
+// メソッド定義時に返す値がないのに「int」を書いていた
+public int run(int distance) {
+  System.out.println(distance + "km走ります");
+  System.out.println("走行距離：" + distance + "km");
+}
+```
+***
