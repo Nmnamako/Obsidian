@@ -219,3 +219,73 @@ public int run(int distance) {
 }
 ```
 ***
+#### 6/10 走る距離を入力させる
+Main.java
+```java
+import java.util.Scanner;
+class Main {
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    Bicycle bicycle = new Bicycle("ビアンキ", "緑");
+    //System.out.println("【自転車の情報】");
+    //System.out.println("名前：" + bicycle.getName());
+    //System.out.println("色：" + bicycle.getColor());
+    
+    bicycle.printData();
+    System.out.println("-----------------");
+    System.out.print("走る距離を入力してください：");
+    int i = scanner.nextInt();
+    bicycle.run(i);
+  }
+}
+```
+
+Bicycle.java
+```java
+class Bicycle {
+  private String name, color;
+  private int distance;
+  
+  Bicycle(String name, String color) {
+    this.name = name;
+    this.color = color;
+  }
+  
+  public String getName() {
+    return this.name = name;
+  }
+  
+  public String getColor() {
+    return this.color = color;
+  }
+  
+  public int getDistance() {
+    return this.distance = distance;
+  }
+  
+  public void run(int distance) {
+    System.out.println(distance + "km走ります");
+    System.out.println("走行距離：" + distance + "km");
+  }
+  
+  public void printData() {
+    System.out.println("【自転車の情報】");
+    System.out.println("名前：" + this.getName());
+    System.out.println("色：" + this.getColor());
+    System.out.println("走行距離：" + this.getDistance() + "km");
+  }
+}
+```
+
+上記作成時に以下のミスがあった
+変数宣言時に「public」を入れていた
+「scanner.next()」は==文字列のみ受け付けるが、整数などは受け付けない==完全に忘れていた。
+``` java
+// 以下が正解
+int i = scanner.nextInt();
+
+// 以下が間違い
+public int i = scanner.next();
+```
+
+***
