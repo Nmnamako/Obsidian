@@ -94,3 +94,57 @@ public void printData() {
 ```
 
 ***
+#### 4/10 走行距離追加
+Main.java
+```java
+class Main {
+  public static void main(String[] args) {
+    Bicycle bicycle = new Bicycle("ビアンキ", "緑");
+    //System.out.println("【自転車の情報】");
+    //System.out.println("名前：" + bicycle.getName());
+    //System.out.println("色：" + bicycle.getColor());
+    
+    bicycle.printData();
+  }
+}
+```
+
+Bicycle.java
+```java
+class Bicycle {
+  private String name, color;
+  // private String color;
+  private int distance;
+  
+  Bicycle(String name, String color) {
+    this.name = name;
+    this.color = color;
+  }
+  
+  public String getName() {
+    return this.name = name;
+  }
+  
+  public String getColor() {
+    return this.color = color;
+  }
+  
+  public int getDistance() {
+    return this.distance = distance;
+  }
+  
+  public void printData() {
+    System.out.println("【自転車の情報】");
+    System.out.println("名前：" + this.getName());
+    System.out.println("色：" + this.getColor());
+    System.out.println("走行距離：" + this.getDistance() + "km");
+  }
+}
+```
+
+上記作成時に問題はなかった
+オラクル内にあった記述を試すと正常に動作した
+``` java
+private String name, color;
+```
+***
