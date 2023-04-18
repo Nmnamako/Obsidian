@@ -219,6 +219,7 @@ public int run(int distance) {
 }
 ```
 ***
+
 #### 6/10 走る距離を入力させる
 Main.java
 ```java
@@ -286,6 +287,123 @@ int i = scanner.nextInt();
 
 // 以下が間違い
 public int i = scanner.next();
+```
+
+入力受付時のスキャナーはおそらく、Main.javaに「import」で
+外部ライブラリを呼び出しても他のファイル、「Person.java」「Bicycle」などの別ファイルで scanner.text() が使えない
+試したがダメだった
+***
+
+#### 7/10 Carクラス作成
+
+Main.java
+```java
+import java.util.Scanner;
+class Main {
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    Bicycle bicycle = new Bicycle("ビアンキ", "緑");
+    
+    bicycle.printData();
+    System.out.println("-----------------");
+    System.out.print("走る距離を入力してください：");
+    int i = scanner.nextInt(); 
+    bicycle.run(i);
+    
+    System.out.println("=================");
+    Car car = new Car("フェラーリ", "赤");
+    car.printData();
+  }
+}
+```
+
+Car.java
+```java
+class Car {
+  private String name, color;
+  private int distance;
+  
+  Car(String name, String color) {
+    this.name = name;
+    this.color = color;
+  }
+  
+  public String getName() {
+    return this.name = name;
+  }
+  
+  public String getColor() {
+    return this.color = color;
+  }
+  
+  public int getDistance() {
+    return this.distance = distance;
+  }
+  
+  public void run() {
+
+  }
+  
+  public void printData() {
+    System.out.println("【車の情報】");
+    System.out.println("名前：" + this.getName());
+    System.out.println("色：" + this.getColor());
+    System.out.println("走行距離：" + this.getDistance() + "km");
+  }
+}
+```
+
+Bicycle.java
+```java
+class Bicycle {
+  private String name, color;
+  private int distance;
+  
+  Bicycle(String name, String color) {
+    this.name = name;
+    this.color = color;
+  }
+  
+  public String getName() {
+    return this.name = name;
+  }
+  
+  public String getColor() {
+    return this.color = color;
+  }
+  
+  public int getDistance() {
+    return this.distance = distance;
+  }
+  
+  public void run(int distance) {
+    System.out.println(distance + "km走ります");
+    System.out.println("走行距離：" + distance + "km");
+  }
+  
+  public void printData() {
+    System.out.println("【自転車の情報】");
+    System.out.println("名前：" + this.getName());
+    System.out.println("色：" + this.getColor());
+    System.out.println("走行距離：" + this.getDistance() + "km");
+  }
+}
+```
+
+Carクラス作成時に以下のミスがあった
+コンストラクタ作成時にクラス名と同じ様に名前を明記すること
+``` java
+//以下のコンストラクタが正解
+Car(String name, String color){
+ this.name = name;
+ this.color = color;
+}
+
+//以下のコンストラクタが間違い
+car(String name, String color){
+ this.name = name;
+ this.color = color;
+}
 ```
 
 ***
