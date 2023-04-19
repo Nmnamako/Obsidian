@@ -510,3 +510,134 @@ class Bicycle {
 
 上記作成時にミスはなかったが、ここまでにセミコロンが抜けていることが多くあった。==いいかげん気をつけないといけない。==
 ***
+#### 9/10 車を走らせる
+Main.java
+```java
+import java.util.Scanner;
+class Main {
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    Bicycle bicycle = new Bicycle("ビアンキ", "緑");
+    
+    bicycle.printData();
+    System.out.println("-----------------");
+    System.out.print("走る距離を入力してください：");
+    int i = scanner.nextInt(); 
+    bicycle.run(i);
+    
+    System.out.println("=================");
+    Car car = new Car("フェラーリ", "赤");
+    car.printData();
+    
+    System.out.println("-----------------");
+    System.out.print("走る距離を入力してください：");
+    int b = scanner.nextInt();
+    car.run(b);
+  }
+}
+```
+
+Car.java
+```java
+class Car {
+  private String name, color;
+  private int distance;
+  private int fuel = 100;
+  
+  Car(String name, String color) {
+    this.name = name;
+    this.color = color;
+  }
+  
+  public String getName() {
+    return this.name = name;
+  }
+  
+  public String getColor() {
+    return this.color = color;
+  }
+  
+  public int getDistance() {
+    return this.distance = distance;
+  }
+  
+  public void run(int distance) {
+    if (fuel > distance) {
+      this.distance += distance;
+      this.fuel -= distance;
+      System.out.println(distance + "km走ります");
+      System.out.println("走行距離：" + this.distance + "km");
+      System.out.println("ガソリン量：" + this.fuel + "L");
+    } else {
+      System.out.println(distance + "km走ります");
+      System.out.println("ガソリンが足りません");
+      System.out.println("走行距離：" + this.distance + "km");
+      System.out.println("ガソリン量：" + this.fuel + "L");
+    }
+  }
+  
+  public int getFuel() {
+    return this.fuel = fuel;
+  }
+  
+  public void printData() {
+    System.out.println("【車の情報】");
+    System.out.println("名前：" + this.getName());
+    System.out.println("色：" + this.getColor());
+    System.out.println("走行距離：" + this.getDistance() + "km");
+    System.out.println("ガソリン量：" + this.getFuel() + "L");
+  }
+}
+```
+
+Bicycle.java
+```java
+class Bicycle {
+  private String name, color;
+  private int distance;
+  
+  Bicycle(String name, String color) {
+    this.name = name;
+    this.color = color;
+  }
+  
+  public String getName() {
+    return this.name = name;
+  }
+  
+  public String getColor() {
+    return this.color = color;
+  }
+  
+  public int getDistance() {
+    return this.distance = distance;
+  }
+  
+  public void run(int distance) {
+    System.out.println(distance + "km走ります");
+    System.out.println("走行距離：" + distance + "km");
+  }
+  
+  public void printData() {
+    System.out.println("【自転車の情報】");
+    System.out.println("名前：" + this.getName());
+    System.out.println("色：" + this.getColor());
+    System.out.println("走行距離：" + this.getDistance() + "km");
+  }
+}
+```
+
+上記作成時に以下の注意点がある
+carのrunメソッドに引数として変数を書いているが、これは
+あくまでrunメソッド内でのみの扱い
+``` java
+// mainにて以下を記述
+int b = scanner.nextInt();
+car.run(b);
+
+// carにて以下を記述
+public void run(int distance) {
+ if (fuel > distance) {
+}
+```
+***
