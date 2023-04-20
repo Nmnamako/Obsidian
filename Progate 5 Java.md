@@ -509,3 +509,139 @@ class Bicycle extends Vehicle {
 
 上記作成時に問題はなかった
 ***
+#### 7/12 コンストラクタとsuper()
+Main.java
+```java
+import java.util.Scanner;
+
+class Main {
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    Car car = new Car("フェラーリ", "赤");
+    Bicycle bicycle = new Bicycle("ビアンキ", "緑");
+
+    System.out.println("【車の情報】");
+    car.printData();
+    System.out.println("-----------------");
+    System.out.print("給油する量を入力してください：");
+    int litre = scanner.nextInt();
+    car.charge(litre);
+    
+    System.out.println("=================");
+    System.out.println("【自転車の情報】");
+    bicycle.printData();
+  }
+}
+
+```
+
+Vehicle.java
+``` java
+class Vehicle {
+  private String name;
+  private String color;
+  private int distance = 0;
+  
+  // Vehicleクラスのコンストラクタを定義
+  Vehicle(String name, String color) {
+    this.name = name;
+    this.color = color;
+  }
+
+  public String getName() {
+    return this.name;
+  }
+  public String getColor() {
+    return this.color;
+  }
+  public int getDistance() {
+    return this.distance;
+  }
+  public void setName(String name) {
+    this.name = name;
+  }
+  public void setColor(String color) {
+    this.color = color;
+  }
+  public void printData() {
+    System.out.println("名前：" + this.name);
+    System.out.println("色：" + this.color);
+    System.out.println("走行距離：" + this.distance + "km");
+  }
+}
+```
+
+Car.java
+```java
+class Car extends Vehicle {
+  private int fuel = 50;
+  
+  // Carクラスのコンストラクタを定義し、
+  // superを用いてスーパークラスのコンストラクタを呼び出す
+  Car(String name, String color) {
+    super(name, color);
+  }
+
+  public int getFuel() {
+    return this.fuel;
+  }
+
+  public void printData() {
+    super.printData();
+    System.out.println("ガソリン量：" + this.fuel + "L");
+  }
+
+  public void charge(int litre) {
+    System.out.println(litre + "L給油します");
+    if (litre <= 0) {
+      System.out.println("給油できません");
+    } else if (litre + this.fuel >= 100) {
+      System.out.println("満タンまで給油します");
+      this.fuel = 100;
+    } else {
+      this.fuel += litre;
+    }
+    System.out.println("ガソリン量：" + this.fuel + "L");
+  }
+}
+
+```
+
+Bicycle.java
+```java
+class Bicycle extends Vehicle {
+  // Bicycleクラスのコンストラクタを定義し、
+  // superを用いてスーパークラスのコンストラクタを呼び出す
+  Bicycle(String name, String color) {
+    super(name, color);
+  }
+  
+}
+
+```
+
+上記作成時に問題はなかった
+以下に注意、スーパークラスのコンストラクタを呼び出すには
+以下の通り。しかし、以下の記述を行なった際に「car.java」に書き込んだが「Bicycle.java」には以下の記述を入れず実行すると
+エラーが発生した。
+Vehicle.java
+``` java
+class Vehicle {
+ Vehicle(String name, String color) {
+  this.name = name;
+  this. color = color;
+ }
+}
+```
+
+Car.java
+``` java
+class Car {
+ Car(String name, String color) {
+  //スーパークラスのコンストラクタを呼び出している。
+  super(name, color);
+ }
+}
+```
+
+***
