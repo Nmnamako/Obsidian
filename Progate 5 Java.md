@@ -645,3 +645,169 @@ class Car {
 ```
 
 ***
+#### 8/12 protected
+
+**protectedについて**
+インスタンスフィールドをprivateにしているとサブクラスでも
+アクセスすることができない。ゲッターやセッターを使わない限りは不可能。それ以外で解決するにはprivateではなくprotectedで
+インスタンスフィールドを定義すること。
+protectedは、==クラス内とサブクラスのみアクセス可能==にする。
+
+Main.java
+``` java
+class Vehicle {
+ // クラス内,サブクラスからアクセス可能
+ protected int distance = 0;
+}
+```
+
+Car.java
+``` java
+class Car {
+ public void run(int distance) {
+ // アクセス可能なので、エラーが起きない
+  this.distance += distance;
+ }
+}
+```
+
+**以下アクセス権まとめ**
+「public」
+クラス内「○」サブクラス内「○」クラス、サブクラス外「○」
+
+「private」
+クラス内「○」サブクラス内「X」クラス、サブクラス外「X」
+
+「protected」
+クラス内「○」サブクラス内「○」クラス、サブクラス外「X」
+
+
+Main.java
+```java
+import java.util.Scanner;
+
+class Main {
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    Car car = new Car("フェラーリ", "赤");
+    Bicycle bicycle = new Bicycle("ビアンキ", "緑");
+
+    System.out.println("【車の情報】");
+    car.printData();
+    System.out.println("-----------------");
+    System.out.print("走る距離を入力してください：");
+    int carDistance = scanner.nextInt();
+    // runメソッドを呼び出して、引数にcarDistanceを渡す
+    car.run(carDistance);
+    
+    System.out.println("-----------------");
+    System.out.print("給油する量を入力してください：");
+    int litre = scanner.nextInt();
+    car.charge(litre);
+    
+    System.out.println("=================");
+    System.out.println("【自転車の情報】");
+    bicycle.printData();
+    System.out.println("-----------------");
+    System.out.print("走る距離を入力してください：");
+    int bicycleDistance = scanner.nextInt();
+    // runメソッドを呼び出して、引数にbicycleDistanceを渡す
+    bicycle.run(bicycleDistance);
+    
+  }
+}
+
+```
+
+Vehicle.java
+``` java
+class Vehicle {
+  private String name;
+  private String color;
+  // privateからprotectedに変更
+  protected int distance = 0;
+
+  Vehicle(String name, String color) {
+    this.name = name;
+    this.color = color;
+  }
+
+  public String getName() {
+    return this.name;
+  }
+  public String getColor() {
+    return this.color;
+  }
+  public int getDistance() {
+    return this.distance;
+  }
+  public void setName(String name) {
+    this.name = name;
+  }
+  public void setColor(String color) {
+    this.color = color;
+  }
+  public void printData() {
+    System.out.println("名前：" + this.name);
+    System.out.println("色：" + this.color);
+    System.out.println("走行距離：" + this.distance + "km");
+  }
+}
+```
+
+Car.java
+```java
+public int getFuel() {
+    return this.fuel;
+  }
+
+  public void printData() {
+    super.printData();
+    System.out.println("ガソリン量：" + this.fuel + "L");
+  }
+  
+  public void run(int distance) {
+    System.out.println(distance + "km走ります");
+    if (distance <= this.fuel) {
+      this.distance += distance;
+      this.fuel -= distance;
+    } else {
+      System.out.println("ガソリンが足りません");
+    }
+    System.out.println("走行距離：" + this.distance + "km");
+    System.out.println("ガソリン量：" + this.fuel + "L");
+  }
+
+  public void charge(int litre) {
+    System.out.println(litre + "L給油します");
+    if (litre <= 0) {
+      System.out.println("給油できません");
+    } else if (litre + this.fuel >= 100) {
+      System.out.println("満タンまで給油します");
+      this.fuel = 100;
+    } else {
+      this.fuel += litre;
+    }
+    System.out.println("ガソリン量：" + this.fuel + "L");
+  }
+}
+
+```
+
+Bicycle.java
+```java
+class Bicycle extends Vehicle {
+  Bicycle(String name, String color) {
+    super(name, color);
+  }
+
+  public void run(int distance) {
+    System.out.println(distance + "km走ります");
+    this.distance += distance;
+    System.out.println("走行距離：" + this.distance + "km");
+  }
+}
+
+```
+
+***
