@@ -1036,3 +1036,129 @@ bicycle.getOwner().printData();
 person2.getOwner().printData();
 ```
 ***
+#### 11/12 buyメソッドの追加
+buy()メソッドの中身はsetOwner()メソッドを呼び出し
+ownerの中身を書き換えている。
+``` java
+public void buy(Car car) {
+ car.setOwner(this);
+}
+```
+上記の「car.setOwner(this);」は以下の通り
+``` java
+abstract Vehicle {
+
+ //Vehicleのownerはprivateなので以下の通り
+ public void setOwner(Person person) {
+  this.owner = person;
+ }
+}
+```
+上記の「this」は、Personクラスを指している。
+
+
+Main.java
+```java
+class Main {
+  public static void main(String[] args) {
+    Person person1 = new Person("Kate", "Jones", 27, 1.6, 50.0);
+    Person person2 = new Person("John", "Christopher", "Smith", 65, 1.75, 80.0);
+
+    Car car = new Car("フェラーリ", "赤");
+    Bicycle bicycle = new Bicycle("ビアンキ", "緑");
+    
+    // buyメソッドを用いて、person1にcarを購入
+    person1.buy(car);
+    
+    // buyメソッドを用いて、person2にbicycleを購入
+    person2.buy(bicycle);
+
+    System.out.println("【車の情報】");
+    car.printData();
+    System.out.println("-----------------");
+    System.out.println("【車の所有者の情報】");
+    car.getOwner().printData();
+
+    System.out.println("=================");
+    System.out.println("【自転車の情報】");
+    bicycle.printData();
+    System.out.println("-----------------");
+    System.out.println("【自転車の所有者の情報】");
+    bicycle.getOwner().printData();
+  }
+}
+
+```
+
+Vehicle.java
+``` java
+class Person {
+  private String firstName;
+  private String middleName;
+  private String lastName;
+  private int age;
+  private double height;
+  private double weight;
+
+  Person(String firstName, String lastName, int age, double height, double weight) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+    this.height = height;
+    this.weight = weight;
+  }
+
+  Person(String firstName, String middleName, String lastName, int age, double height, double weight) {
+    this(firstName, lastName, age, height, weight);
+    this.middleName = middleName;
+  }
+
+  public String fullName() {
+    if (this.middleName == null) {
+      return this.firstName + " " + this.lastName;
+    } else {
+      return this.firstName + " " + this.middleName + " " + this.lastName;
+    }
+  }
+
+  public void printData() {
+    System.out.println("名前は" + this.fullName() + "です");
+    System.out.println("年齢は" + this.age + "歳です");
+    System.out.println("身長は" + this.height + "mです");
+    System.out.println("体重は" + this.weight + "kgです");
+    System.out.println("BMIは" + Math.round(this.bmi()) + "です");
+  }
+
+  public double bmi() {
+    return this.weight / this.height / this.height;
+  }
+  
+  // Car型の引数を受け取るbuyメソッドを定義
+  public void buy(Car car) {
+    car.setOwner(this);
+  }
+  
+  // Bicycle型の引数を受け取るbuyメソッドを定義
+  public void buy(Bicycle bicycle) {
+    bicycle.setOwner(this);
+  }
+  
+}
+
+```
+
+上記作成時に以下のミスがあった
+``` java
+//以下正解
+person1.buy(car);
+
+//以下間違い
+//buy()に引数が入ってないのでエラー
+//buy()にperson1を入れてもbuy()メソッドの仮引数は、
+//(Car car)のクラス型で定義されているので、値が入らない
+//そもそもbuy()メソッド内で、setOwner()メソッドを呼び出しているので、引数にperson1情報を入れても意味がない
+person1.buy();
+buy(person1);
+```
+
+***
