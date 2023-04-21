@@ -811,3 +811,82 @@ class Bicycle extends Vehicle {
 ```
 
 ***
+#### 9/12 抽象メソッドと抽象クラス
+現状Vehicleは乗り物という大まかなクラスを作り
+次にサブクラス（乗り物の種類）と構成している。
+乗り物には走行距離のrun()メソッドを全て適用しなければならないが、乗り物ごとに走行方法が違うためスーパークラスにrun()メソッドが適用させずらい問題がある。
+それを解決するために以下の方法がある。
+
+**抽象メソッド**
+抽象メソッドは、==処理が未定のメソッドを定義する==
+抽象メソッドは、==中身の処理内容を書かない==
+abstractは、「抽象的な」という意味
+具体的な処理が決まっていないメソッドである。
+また、抽象メソッドはサブクラスがそのメソッドを
+==オーバーライドしなければエラーになる。==
+あるサブクラスに、あるメソッドを必ず持たせたい場合は
+スーパークラスに抽象メソッドとして定義することが大事。
+``` java
+class Vehicle {
+ public abstract void run(int distance);
+}
+```
+
+**抽象クラス**
+クラス内で、抽象メソッドが==1つでも存在する場合==は、抽象クラスと呼ばれクラス名の前に「abstract」をつける必要がある。
+また、抽象クラスからはインスタンスを作成できない。
+抽象メソッドを持つ、抽象クラスは未完成である。
+なので、未完成のクラスからはインスタンスを作成できない。
+
+Vehicle.main
+``` java
+abstract class Vehicle {
+  private String name;
+  private String color;
+  protected int distance = 0;
+
+  Vehicle(String name, String color) {
+    this.name = name;
+    this.color = color;
+  }
+
+  public String getName() {
+    return this.name;
+  }
+  public String getColor() {
+    return this.color;
+  }
+  public int getDistance() {
+    return this.distance;
+  }
+  public void setName(String name) {
+    this.name = name;
+  }
+  public void setColor(String color) {
+    this.color = color;
+  }
+  public void printData() {
+    System.out.println("名前：" + this.name);
+    System.out.println("色：" + this.color);
+    System.out.println("走行距離：" + this.distance + "km");
+  }
+  
+  // 抽象メソッドrunを定義
+  public abstract void run(int distance);
+  
+}
+```
+
+上記作成で以下のミスがあった。
+抽象メソッドを書く場合は {} が不要であり、セミコロンが必要
+``` java
+// 以下正解
+public abstract void run(int distance);
+
+// 以下間違い
+public abstract void run(int distance) {
+
+}
+```
+
+***
