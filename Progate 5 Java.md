@@ -890,3 +890,149 @@ public abstract void run(int distance) {
 ```
 
 ***
+#### 10/12 クラス型のフィールド
+乗り物の所有者を定義する記述
+Java4で作った「person」を使用し所有者を定義する
+インスタンスフィールドにクラス型の変数定義することで、
+フィールドにインスタンスを持つことが可能
+``` java
+abstract Vehicle {
+
+ //Person型のownerフィールドを追加
+ private Person owner;
+}
+```
+
+ownerフィールドがprivateなので、ゲッターとセッターが必要
+クラス型なので書き方が少し変わる
+``` java
+abstract class Vehicle {
+
+ //ゲッターはデータ型の箇所をクラス型にする必要がある
+ public Person getOwner() {
+  return this.owner;
+ }
+
+ //セッターは引数にクラス型(Person)が必要
+ public void setOwner(Person person) {
+  this.owner = person;
+ }
+}
+
+```
+
+
+
+Main.java
+```java
+class Main {
+  public static void main(String[] args) {
+    Person person1 = new Person("Kate", "Jones", 27, 1.6, 50.0);
+    Person person2 = new Person("John", "Christopher", "Smith", 65, 1.75, 80.0);
+
+    Car car = new Car("フェラーリ", "赤");
+    // setOwnerを用いて、carの所有者をperson1にする
+    car.setOwner(person1);
+    
+    Bicycle bicycle = new Bicycle("ビアンキ", "緑");
+    // setOwnerを用いて、bicycleの所有者をperson2にする
+    bicycle.setOwner(person2);
+
+    System.out.println("【車の情報】");
+    car.printData();
+    System.out.println("-----------------");
+    System.out.println("【車の所有者の情報】");
+    // getOwnerメソッドを用いてcarのownerを取得し、
+    // さらにprintDataメソッドを用いてownerの情報を出力
+    car.getOwner().printData();
+
+    System.out.println("=================");
+    System.out.println("【自転車の情報】");
+    bicycle.printData();
+    System.out.println("-----------------");
+    System.out.println("【自転車の所有者の情報】");
+    // getOwnerメソッドを用いてbicycleのownerを取得し、
+    // さらにprintDataメソッドを用いてownerの情報を出力
+    bicycle.getOwner().printData();
+    
+  }
+}
+
+```
+
+Vehicle.java
+``` java
+abstract class Vehicle {
+  private String name;
+  private String color;
+  protected int distance = 0;
+  // インスタンスフィールドownerを定義
+  private Person owner;
+
+  Vehicle(String name, String color) {
+    this.name = name;
+    this.color = color;
+  }
+
+  public String getName() {
+    return this.name;
+  }
+  public String getColor() {
+    return this.color;
+  }
+  public int getDistance() {
+    return this.distance;
+  }
+  
+  // ownerフィールドのゲッターを定義
+  public Person getOwner(){
+    return this.owner;
+  }
+  
+  public void setName(String name) {
+    this.name = name;
+  }
+  public void setColor(String color) {
+    this.color = color;
+  }
+  
+  // ownerフィールドのセッターを定義
+  public void setOwner(Person person) {
+    this.owner = person;
+  }
+
+  public void printData() {
+    System.out.println("名前：" + this.name);
+    System.out.println("色：" + this.color);
+    System.out.println("走行距離：" + this.distance + "km");
+  }
+
+  public abstract void run(int distance);
+}
+
+```
+
+上記作成時に以下のミスがあった
+``` java
+//セッターは以下が正解
+public void setOwner(Person person){
+ // 処理内容
+}
+
+// ゲッターの名残でデータ型をつけてしまっている。
+//リターンがないのにvoidが抜けている。
+public Person setOwner(Person person) {
+ // 処理内容
+}
+```
+
+考えてすぐ気づいたミス
+このミスはゲッターが何を持ってくるか考えればすぐに解決した
+``` java
+//正解
+bicycle.getOwner().printData();
+
+//間違い
+person2.getOwner().printData();
+```
+***
